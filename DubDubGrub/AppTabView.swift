@@ -22,7 +22,9 @@ struct AppTabView: View {
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }
-        }.accentColor(.brandPrimary)
+        }
+        .accentColor(.brandPrimary)
+        .tabViewDefaultBackground()
     }
 }
 
