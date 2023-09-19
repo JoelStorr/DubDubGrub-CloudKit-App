@@ -10,6 +10,8 @@
 		40230F362AB99178002FBFF7 /* Label+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40230F352AB99177002FBFF7 /* Label+Ext.swift */; };
 		40230F3A2AB9B8A6002FBFF7 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40230F392AB9B8A6002FBFF7 /* LocationCell.swift */; };
 		40230F3C2AB9B8E3002FBFF7 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40230F3B2AB9B8E3002FBFF7 /* AvatarView.swift */; };
+		4033E2852ABA22EF004E51F4 /* CustomModifires.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4033E2842ABA22EF004E51F4 /* CustomModifires.swift */; };
+		4033E2872ABA25B3004E51F4 /* DDGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4033E2862ABA25B3004E51F4 /* DDGButton.swift */; };
 		405E71C32AB7964500DF6D25 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405E71C22AB7964500DF6D25 /* LocationDetailView.swift */; };
 		40733D0E2AB72FD600340EED /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40733D0D2AB72FD600340EED /* View+Ext.swift */; };
 		40BE27D92AB63F0B004F93D9 /* DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BE27D82AB63F0B004F93D9 /* DubDubGrubApp.swift */; };
@@ -26,6 +28,8 @@
 		40230F352AB99177002FBFF7 /* Label+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+Ext.swift"; sourceTree = "<group>"; };
 		40230F392AB9B8A6002FBFF7 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		40230F3B2AB9B8E3002FBFF7 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		4033E2842ABA22EF004E51F4 /* CustomModifires.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifires.swift; sourceTree = "<group>"; };
+		4033E2862ABA25B3004E51F4 /* DDGButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGButton.swift; sourceTree = "<group>"; };
 		405E71C22AB7964500DF6D25 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		40733D0D2AB72FD600340EED /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		40BE27D52AB63F0B004F93D9 /* DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +55,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4033E2882ABA29DF004E51F4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				40BE27E72AB655AF004F93D9 /* Color+Ext.swift */,
+				40733D0D2AB72FD600340EED /* View+Ext.swift */,
+				40230F352AB99177002FBFF7 /* Label+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4033E2892ABA2A12004E51F4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4033E2842ABA22EF004E51F4 /* CustomModifires.swift */,
+				4033E28C2ABA2A7D004E51F4 /* Custom Views */,
+				4033E28B2ABA2A6A004E51F4 /* Cells */,
+				4033E28A2ABA2A21004E51F4 /* Screens */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4033E28A2ABA2A21004E51F4 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				40BE27E92AB65616004F93D9 /* AppTabView.swift */,
+				40BE27EB2AB65649004F93D9 /* LocationMapView.swift */,
+				40BE27ED2AB65672004F93D9 /* LocationListView.swift */,
+				405E71C22AB7964500DF6D25 /* LocationDetailView.swift */,
+				40BE27EF2AB65690004F93D9 /* ProfileView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		4033E28B2ABA2A6A004E51F4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				40230F392AB9B8A6002FBFF7 /* LocationCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4033E28C2ABA2A7D004E51F4 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				40230F3B2AB9B8E3002FBFF7 /* AvatarView.swift */,
+				4033E2862ABA25B3004E51F4 /* DDGButton.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		40BE27CC2AB63F0B004F93D9 = {
 			isa = PBXGroup;
 			children = (
@@ -70,20 +124,12 @@
 		40BE27D72AB63F0B004F93D9 /* DubDubGrub */ = {
 			isa = PBXGroup;
 			children = (
+				4033E2882ABA29DF004E51F4 /* Extensions */,
+				4033E2892ABA2A12004E51F4 /* Views */,
 				40BE27E62AB6463A004F93D9 /* DubDubGrub.entitlements */,
 				40BE27D82AB63F0B004F93D9 /* DubDubGrubApp.swift */,
 				40BE27DC2AB63F0D004F93D9 /* Assets.xcassets */,
 				40BE27DE2AB63F0D004F93D9 /* Preview Content */,
-				40BE27E72AB655AF004F93D9 /* Color+Ext.swift */,
-				40BE27E92AB65616004F93D9 /* AppTabView.swift */,
-				40BE27EB2AB65649004F93D9 /* LocationMapView.swift */,
-				40BE27ED2AB65672004F93D9 /* LocationListView.swift */,
-				40BE27EF2AB65690004F93D9 /* ProfileView.swift */,
-				40733D0D2AB72FD600340EED /* View+Ext.swift */,
-				405E71C22AB7964500DF6D25 /* LocationDetailView.swift */,
-				40230F352AB99177002FBFF7 /* Label+Ext.swift */,
-				40230F392AB9B8A6002FBFF7 /* LocationCell.swift */,
-				40230F3B2AB9B8E3002FBFF7 /* AvatarView.swift */,
 			);
 			path = DubDubGrub;
 			sourceTree = "<group>";
@@ -124,7 +170,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					40BE27D42AB63F0B004F93D9 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -171,8 +217,10 @@
 				405E71C32AB7964500DF6D25 /* LocationDetailView.swift in Sources */,
 				40BE27EC2AB65649004F93D9 /* LocationMapView.swift in Sources */,
 				40230F3C2AB9B8E3002FBFF7 /* AvatarView.swift in Sources */,
+				4033E2852ABA22EF004E51F4 /* CustomModifires.swift in Sources */,
 				40BE27EE2AB65672004F93D9 /* LocationListView.swift in Sources */,
 				40BE27EA2AB65616004F93D9 /* AppTabView.swift in Sources */,
+				4033E2872ABA25B3004E51F4 /* DDGButton.swift in Sources */,
 				40230F3A2AB9B8A6002FBFF7 /* LocationCell.swift in Sources */,
 				40BE27F02AB65690004F93D9 /* ProfileView.swift in Sources */,
 				40230F362AB99178002FBFF7 /* Label+Ext.swift in Sources */,
@@ -219,6 +267,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -279,6 +328,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

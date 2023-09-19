@@ -18,3 +18,11 @@ extension View {
         }
     }
 }
+
+
+
+extension View{
+    func profileNameStyle() -> some View{
+        self.modifier(ProfileNameStyle())
+    }
+}

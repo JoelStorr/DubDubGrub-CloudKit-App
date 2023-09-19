@@ -24,33 +24,21 @@ struct ProfileView: View {
                 
                 //SECTION: Top Card
                 ZStack{
-                    Color(.secondarySystemBackground)
-                        .frame(height: 130)
-                        .cornerRadius(12)
-                        .padding(.horizontal)
+                    NameBackgroundView()
                     
                     HStack(spacing: 16){
                         ZStack{
                             AvatarView(size: 84)
-                            Image(systemName: "square.and.pencil")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 14, height: 14)
-                                .foregroundColor(.white)
-                                .offset(y:30)
+                            EditImage()
                         }
                         .padding(.leading, 12)
                         //TODO: Add Tap gesture on image
                         VStack(spacing: 1){
                             TextField("First Name", text: $firstName)
-                                .font(.system(size: 32, weight: .bold))
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.75)
+                                .profileNameStyle()
                             
                             TextField("Last Name", text: $lastName)
-                                .font(.system(size: 32, weight: .bold))
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.75)
+                                .profileNameStyle()
                             
                             TextField("Company Name", text:$companyName)
                                 
@@ -63,18 +51,7 @@ struct ProfileView: View {
                 
                 //SECTION: BIO
                 VStack(alignment: .leading, spacing: 8){
-                    Text("Bio: ")
-                        .font(.callout)
-                        .foregroundColor(.secondary)
-                    +
-                    Text("\(100 - bio.count)")
-                        .bold()
-                        .font(.callout)
-                        .foregroundColor(bio.count <= 100 ? .brandPrimary : Color(.systemPink))
-                    +
-                    Text(" Characters remain")
-                        .font(.callout)
-                        .foregroundColor(Color.secondary)
+                    CharactersRemainView(currentCount: bio.count)
                     TextEditor(text: $bio)
                         .frame(height: 100)
                         .overlay(RoundedRectangle(cornerRadius: 8).stroke( Color.secondary, lineWidth: 1))
@@ -87,12 +64,7 @@ struct ProfileView: View {
                 Button {
                     return
                 } label: {
-                    Text("Create Profile")
-                        .bold()
-                        .frame(width: 280, height: 44)
-                        .background(Color.brandPrimary)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
+                    DDGButton(title: "Create Profile")
                 }
 
            
@@ -108,5 +80,47 @@ struct ProfileView_Previews: PreviewProvider {
         NavigationView{
             ProfileView()
         }
+    }
+}
+
+
+struct NameBackgroundView: View {
+    var body: some View {
+        Color(.secondarySystemBackground)
+            .frame(height: 130)
+            .cornerRadius(12)
+            .padding(.horizontal)
+    }
+}
+
+
+struct EditImage: View {
+    var body: some View {
+        Image(systemName: "square.and.pencil")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 14, height: 14)
+            .foregroundColor(.white)
+            .offset(y:30)
+    }
+}
+
+struct CharactersRemainView: View {
+    
+    var currentCount: Int
+    
+    var body: some View {
+        Text("Bio: ")
+            .font(.callout)
+            .foregroundColor(.secondary)
+        +
+        Text("\(100 - currentCount)")
+            .bold()
+            .font(.callout)
+            .foregroundColor(currentCount <= 100 ? .brandPrimary : Color(.systemPink))
+        +
+        Text(" Characters remain")
+            .font(.callout)
+            .foregroundColor(Color.secondary)
     }
 }
