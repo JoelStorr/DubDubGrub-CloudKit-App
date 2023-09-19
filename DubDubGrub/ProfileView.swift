@@ -41,7 +41,9 @@ struct ProfileView: View {
                     Button() {
                         return
                     } label: {
-                        Label("Check Out", image: "place")
+                        Label("Check Out", systemImage: "mappin.and.ellipse")
+                            .labelStyle(RedBackgroundLabelStyle())
+                            
                             
                     }
 
