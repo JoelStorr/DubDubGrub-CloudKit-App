@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		40230F362AB99178002FBFF7 /* Label+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40230F352AB99177002FBFF7 /* Label+Ext.swift */; };
+		40230F3A2AB9B8A6002FBFF7 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40230F392AB9B8A6002FBFF7 /* LocationCell.swift */; };
+		40230F3C2AB9B8E3002FBFF7 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40230F3B2AB9B8E3002FBFF7 /* AvatarView.swift */; };
 		405E71C32AB7964500DF6D25 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405E71C22AB7964500DF6D25 /* LocationDetailView.swift */; };
 		40733D0E2AB72FD600340EED /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40733D0D2AB72FD600340EED /* View+Ext.swift */; };
 		40BE27D92AB63F0B004F93D9 /* DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BE27D82AB63F0B004F93D9 /* DubDubGrubApp.swift */; };
@@ -22,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		40230F352AB99177002FBFF7 /* Label+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+Ext.swift"; sourceTree = "<group>"; };
+		40230F392AB9B8A6002FBFF7 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		40230F3B2AB9B8E3002FBFF7 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		405E71C22AB7964500DF6D25 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		40733D0D2AB72FD600340EED /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		40BE27D52AB63F0B004F93D9 /* DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +82,8 @@
 				40733D0D2AB72FD600340EED /* View+Ext.swift */,
 				405E71C22AB7964500DF6D25 /* LocationDetailView.swift */,
 				40230F352AB99177002FBFF7 /* Label+Ext.swift */,
+				40230F392AB9B8A6002FBFF7 /* LocationCell.swift */,
+				40230F3B2AB9B8E3002FBFF7 /* AvatarView.swift */,
 			);
 			path = DubDubGrub;
 			sourceTree = "<group>";
@@ -164,8 +170,10 @@
 				40BE27D92AB63F0B004F93D9 /* DubDubGrubApp.swift in Sources */,
 				405E71C32AB7964500DF6D25 /* LocationDetailView.swift in Sources */,
 				40BE27EC2AB65649004F93D9 /* LocationMapView.swift in Sources */,
+				40230F3C2AB9B8E3002FBFF7 /* AvatarView.swift in Sources */,
 				40BE27EE2AB65672004F93D9 /* LocationListView.swift in Sources */,
 				40BE27EA2AB65616004F93D9 /* AppTabView.swift in Sources */,
+				40230F3A2AB9B8A6002FBFF7 /* LocationCell.swift in Sources */,
 				40BE27F02AB65690004F93D9 /* ProfileView.swift in Sources */,
 				40230F362AB99178002FBFF7 /* Label+Ext.swift in Sources */,
 				40BE27E82AB655AF004F93D9 /* Color+Ext.swift in Sources */,
