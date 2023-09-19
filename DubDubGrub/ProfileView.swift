@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     
     @State var charNumber: Int = 100
+    @State var bioText: String = ""
     
     var body: some View {
         NavigationView {
@@ -49,7 +50,15 @@ struct ProfileView: View {
 
                 }
                 .padding()
+                
+                TextField("Your Bio text", text: $bioText)
+                    .frame(width: .infinity ,height: 100)
+                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+                    .padding(10)
                 Spacer()
+                Button("Save Profile") {
+                    return
+                }
             }
             .navigationTitle("Profile")
             
