@@ -24,6 +24,7 @@
 		40BE27F02AB65690004F93D9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BE27EF2AB65690004F93D9 /* ProfileView.swift */; };
 		40C417CB2ABB2560006A2CEE /* DDGLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C417CA2ABB2560006A2CEE /* DDGLocation.swift */; };
 		40C417CD2ABB726F006A2CEE /* DDGProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C417CC2ABB726F006A2CEE /* DDGProfile.swift */; };
+		40C417CF2ABB763E006A2CEE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C417CE2ABB763E006A2CEE /* MockData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		40BE27EF2AB65690004F93D9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		40C417CA2ABB2560006A2CEE /* DDGLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGLocation.swift; sourceTree = "<group>"; };
 		40C417CC2ABB726F006A2CEE /* DDGProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGProfile.swift; sourceTree = "<group>"; };
+		40C417CE2ABB763E006A2CEE /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			children = (
 				40C417CA2ABB2560006A2CEE /* DDGLocation.swift */,
 				40C417CC2ABB726F006A2CEE /* DDGProfile.swift */,
+				40C417CE2ABB763E006A2CEE /* MockData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				4033E2872ABA25B3004E51F4 /* DDGButton.swift in Sources */,
 				40230F3A2AB9B8A6002FBFF7 /* LocationCell.swift in Sources */,
 				40BE27F02AB65690004F93D9 /* ProfileView.swift in Sources */,
+				40C417CF2ABB763E006A2CEE /* MockData.swift in Sources */,
 				40230F362AB99178002FBFF7 /* Label+Ext.swift in Sources */,
 				40BE27E82AB655AF004F93D9 /* Color+Ext.swift in Sources */,
 			);

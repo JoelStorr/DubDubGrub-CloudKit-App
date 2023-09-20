@@ -26,7 +26,7 @@ struct DDGProfile{
     let avatar: CKAsset!
     let companyName: String
     let bio: String
-    let isCheckedIn: String
+    var isCheckedIn: CKRecord.Reference? = nil
     
     
     
@@ -38,7 +38,7 @@ struct DDGProfile{
         avatar = record[DDGProfile.kAvatar] as? CKAsset
         companyName = record[DDGProfile.kCompanyName] as? String ?? "N/A"
         bio = record[DDGProfile.kBio] as? String ?? "N/A"
-        isCheckedIn = record[DDGProfile.kIsCheckedIn] as? String ?? "N/A"
+       // isCheckedIn = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference ?? nil
         
     }
 }

@@ -11,7 +11,7 @@ struct LocationDetailView: View {
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
-    
+    var location : DDGLocation
     
     var body: some View {
         
@@ -19,11 +19,11 @@ struct LocationDetailView: View {
             BannerImageView(imageName: "default-banner-asset")
             
             HStack{
-                AdrassView(address: "123 Main Street")
+                AdrassView(address: location.address)
                 Spacer()
             }
             .padding(.horizontal)
-            DescriptionView(text: "This is a test description. This is a test description. This is a test description.This is a test description.This is a test description.")
+            DescriptionView(text: location.description)
             
             
             ZStack{
@@ -37,7 +37,7 @@ struct LocationDetailView: View {
                         LocationActionButton(color: .brandPrimary, imageName: "location.fill")
                     }
                     
-                    Link(destination: URL(string: "www.apple.com")!) {
+                    Link(destination: URL(string: location.websiteURL)!) {
                         
                         LocationActionButton(color: .brandPrimary, imageName: "network")
                     }
@@ -77,7 +77,7 @@ struct LocationDetailView: View {
             Spacer()
             
         }
-        .navigationTitle("Location Name")
+        .navigationTitle(location.name)
         .navigationBarTitleDisplayMode(.inline)
         
     }
@@ -87,7 +87,7 @@ struct LocationDetailView: View {
 struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            LocationDetailView()
+            LocationDetailView(location: DDGLocation(record: MockData.location))
         }
     }
 }

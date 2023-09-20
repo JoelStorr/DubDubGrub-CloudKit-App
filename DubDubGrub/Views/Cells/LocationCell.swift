@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct LocationCell: View {
+    
+    var location: DDGLocation
+    
     var body: some View {
         HStack{
             Image("default-square-asset")
@@ -17,7 +20,7 @@ struct LocationCell: View {
                 .clipShape(Circle())
                 .padding(.vertical, 8)
             VStack(alignment: .leading){
-                Text("Test location name")
+                Text(location.name)
                     .font(.title2)
                     .fontWeight(.semibold)
                     .lineLimit(1)
@@ -34,5 +37,5 @@ struct LocationCell: View {
 }
 
 #Preview {
-    LocationCell()
+    LocationCell(location: DDGLocation(record: MockData.location))
 }
