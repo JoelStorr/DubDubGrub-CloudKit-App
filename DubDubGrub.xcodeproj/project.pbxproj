@@ -22,6 +22,7 @@
 		40BE27EC2AB65649004F93D9 /* LocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BE27EB2AB65649004F93D9 /* LocationMapView.swift */; };
 		40BE27EE2AB65672004F93D9 /* LocationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BE27ED2AB65672004F93D9 /* LocationListView.swift */; };
 		40BE27F02AB65690004F93D9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BE27EF2AB65690004F93D9 /* ProfileView.swift */; };
+		40C417CB2ABB2560006A2CEE /* DDGLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C417CA2ABB2560006A2CEE /* DDGLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		40BE27EB2AB65649004F93D9 /* LocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapView.swift; sourceTree = "<group>"; };
 		40BE27ED2AB65672004F93D9 /* LocationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListView.swift; sourceTree = "<group>"; };
 		40BE27EF2AB65690004F93D9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		40C417CA2ABB2560006A2CEE /* DDGLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 		40BE27D72AB63F0B004F93D9 /* DubDubGrub */ = {
 			isa = PBXGroup;
 			children = (
+				40C417C92ABB254C006A2CEE /* Model */,
 				4033E2882ABA29DF004E51F4 /* Extensions */,
 				4033E2892ABA2A12004E51F4 /* Views */,
 				40BE27E62AB6463A004F93D9 /* DubDubGrub.entitlements */,
@@ -140,6 +143,14 @@
 				40BE27DF2AB63F0D004F93D9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		40C417C92ABB254C006A2CEE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				40C417CA2ABB2560006A2CEE /* DDGLocation.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +229,7 @@
 				40BE27EC2AB65649004F93D9 /* LocationMapView.swift in Sources */,
 				40230F3C2AB9B8E3002FBFF7 /* AvatarView.swift in Sources */,
 				4033E2852ABA22EF004E51F4 /* CustomModifires.swift in Sources */,
+				40C417CB2ABB2560006A2CEE /* DDGLocation.swift in Sources */,
 				40BE27EE2AB65672004F93D9 /* LocationListView.swift in Sources */,
 				40BE27EA2AB65616004F93D9 /* AppTabView.swift in Sources */,
 				4033E2872ABA25B3004E51F4 /* DDGButton.swift in Sources */,
