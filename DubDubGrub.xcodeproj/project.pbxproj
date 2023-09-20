@@ -23,6 +23,7 @@
 		40BE27EE2AB65672004F93D9 /* LocationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BE27ED2AB65672004F93D9 /* LocationListView.swift */; };
 		40BE27F02AB65690004F93D9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BE27EF2AB65690004F93D9 /* ProfileView.swift */; };
 		40C417CB2ABB2560006A2CEE /* DDGLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C417CA2ABB2560006A2CEE /* DDGLocation.swift */; };
+		40C417CD2ABB726F006A2CEE /* DDGProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C417CC2ABB726F006A2CEE /* DDGProfile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		40BE27ED2AB65672004F93D9 /* LocationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListView.swift; sourceTree = "<group>"; };
 		40BE27EF2AB65690004F93D9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		40C417CA2ABB2560006A2CEE /* DDGLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGLocation.swift; sourceTree = "<group>"; };
+		40C417CC2ABB726F006A2CEE /* DDGProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGProfile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				40C417CA2ABB2560006A2CEE /* DDGLocation.swift */,
+				40C417CC2ABB726F006A2CEE /* DDGProfile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				40733D0E2AB72FD600340EED /* View+Ext.swift in Sources */,
 				40BE27D92AB63F0B004F93D9 /* DubDubGrubApp.swift in Sources */,
 				405E71C32AB7964500DF6D25 /* LocationDetailView.swift in Sources */,
+				40C417CD2ABB726F006A2CEE /* DDGProfile.swift in Sources */,
 				40BE27EC2AB65649004F93D9 /* LocationMapView.swift in Sources */,
 				40230F3C2AB9B8E3002FBFF7 /* AvatarView.swift in Sources */,
 				4033E2852ABA22EF004E51F4 /* CustomModifires.swift in Sources */,

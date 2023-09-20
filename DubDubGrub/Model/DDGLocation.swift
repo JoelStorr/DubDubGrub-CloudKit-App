@@ -11,7 +11,6 @@ import CloudKit
 struct DDGLocation {
     
     
-    
     static let kName = "name"
     static let kDescription = "description"
     static let kSquareAsset = "squareAsset"
@@ -20,9 +19,6 @@ struct DDGLocation {
     static let kLocation = "loaction"
     static let kWebsiteURL = "websiteURL"
     static let kPhoneNumber = "phoneNumber"
-    
-    
-    
     
     let ckRecordID: CKRecord.ID
     
@@ -47,11 +43,5 @@ struct DDGLocation {
         location = record[DDGLocation.kLocation] as? CLLocation ?? CLLocation(latitude: 0, longitude: 0)
         websiteURL = record[DDGLocation.kWebsiteURL] as? String ?? "N/A"
         phoneNumber = record[DDGLocation.kPhoneNumber] as? String ?? "N/A"
-        
- 
     }
-    
-    
-    
-    
 }
