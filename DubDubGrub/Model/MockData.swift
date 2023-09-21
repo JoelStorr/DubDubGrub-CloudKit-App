@@ -10,7 +10,7 @@ import CloudKit
 
 struct MockData{
     static var location: CKRecord{
-        let record = CKRecord(recordType: "DDGLocation")
+        let record = CKRecord(recordType: RecordType.location)
         record[DDGLocation.kName] = "Sean's Barn and Grill"
         record[DDGLocation.kAdress] = "123 Main Street"
         record[DDGLocation.kDescription] = "This is a test description. Isn't it awsome. Not sure how long to make it to thest the 3 lines"

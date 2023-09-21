@@ -12,6 +12,8 @@
 		40230F3C2AB9B8E3002FBFF7 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40230F3B2AB9B8E3002FBFF7 /* AvatarView.swift */; };
 		4033E2852ABA22EF004E51F4 /* CustomModifires.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4033E2842ABA22EF004E51F4 /* CustomModifires.swift */; };
 		4033E2872ABA25B3004E51F4 /* DDGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4033E2862ABA25B3004E51F4 /* DDGButton.swift */; };
+		40399A6C2ABC57560076F30B /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40399A6B2ABC57560076F30B /* CloudKitManager.swift */; };
+		40399A6E2ABC76EC0076F30B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40399A6D2ABC76EC0076F30B /* Constants.swift */; };
 		405E71C32AB7964500DF6D25 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405E71C22AB7964500DF6D25 /* LocationDetailView.swift */; };
 		40733D0E2AB72FD600340EED /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40733D0D2AB72FD600340EED /* View+Ext.swift */; };
 		40BE27D92AB63F0B004F93D9 /* DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BE27D82AB63F0B004F93D9 /* DubDubGrubApp.swift */; };
@@ -33,6 +35,8 @@
 		40230F3B2AB9B8E3002FBFF7 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		4033E2842ABA22EF004E51F4 /* CustomModifires.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifires.swift; sourceTree = "<group>"; };
 		4033E2862ABA25B3004E51F4 /* DDGButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGButton.swift; sourceTree = "<group>"; };
+		40399A6B2ABC57560076F30B /* CloudKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
+		40399A6D2ABC76EC0076F30B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		405E71C22AB7964500DF6D25 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		40733D0D2AB72FD600340EED /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		40BE27D52AB63F0B004F93D9 /* DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +115,16 @@
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
+		40399A6A2ABC55BE0076F30B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4033E2882ABA29DF004E51F4 /* Extensions */,
+				40399A6B2ABC57560076F30B /* CloudKitManager.swift */,
+				40399A6D2ABC76EC0076F30B /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		40BE27CC2AB63F0B004F93D9 = {
 			isa = PBXGroup;
 			children = (
@@ -130,8 +144,8 @@
 		40BE27D72AB63F0B004F93D9 /* DubDubGrub */ = {
 			isa = PBXGroup;
 			children = (
+				40399A6A2ABC55BE0076F30B /* Utilities */,
 				40C417C92ABB254C006A2CEE /* Model */,
-				4033E2882ABA29DF004E51F4 /* Extensions */,
 				4033E2892ABA2A12004E51F4 /* Views */,
 				40BE27E62AB6463A004F93D9 /* DubDubGrub.entitlements */,
 				40BE27D82AB63F0B004F93D9 /* DubDubGrubApp.swift */,
@@ -233,6 +247,7 @@
 				40BE27D92AB63F0B004F93D9 /* DubDubGrubApp.swift in Sources */,
 				405E71C32AB7964500DF6D25 /* LocationDetailView.swift in Sources */,
 				40C417CD2ABB726F006A2CEE /* DDGProfile.swift in Sources */,
+				40399A6C2ABC57560076F30B /* CloudKitManager.swift in Sources */,
 				40BE27EC2AB65649004F93D9 /* LocationMapView.swift in Sources */,
 				40230F3C2AB9B8E3002FBFF7 /* AvatarView.swift in Sources */,
 				4033E2852ABA22EF004E51F4 /* CustomModifires.swift in Sources */,
@@ -245,6 +260,7 @@
 				40C417CF2ABB763E006A2CEE /* MockData.swift in Sources */,
 				40230F362AB99178002FBFF7 /* Label+Ext.swift in Sources */,
 				40BE27E82AB655AF004F93D9 /* Color+Ext.swift in Sources */,
+				40399A6E2ABC76EC0076F30B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
