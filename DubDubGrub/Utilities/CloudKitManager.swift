@@ -22,7 +22,7 @@ struct CloudKitManager{
         let query = CKQuery(recordType: RecordType.location, predicate: NSPredicate(value: true))
         query.sortDescriptors = [alphabeticalSort]
         
-        
+        //Fetches data from the DB
     CKContainer.default().publicCloudDatabase.fetch(withQuery: query, inZoneWith: nil) { result in
                 
                 switch result {
@@ -32,7 +32,7 @@ struct CloudKitManager{
                 case .success((let matchResults, _)):
                     
                         var locations: [DDGLocation] = []
-                        
+            
                         for matchResult in matchResults {
                             switch matchResult.1 {
                                 case .success(let record):
