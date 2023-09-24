@@ -23,4 +23,21 @@ struct AlertContext{
         message: Text("Unabel to retrive locations at this time. \nPleas try again"),
         dismissButton: .default(Text("OK"))
     )
+    
+    static let locationRestricted = AlertItem(
+        title: Text("Locations Restricted"),
+        message: Text("Your location is restricted. This may be due to parental controls."),
+        dismissButton: .default(Text("OK"))
+    )
+    static let locationDenied = AlertItem(
+        title: Text("Locations Denied"),
+        message: Text("Dub Dub Grub does not have permission to access your location. To chnage that goe to your device Settings > DubDubGrub > Location"),
+        dismissButton: .default(Text("OK"))
+    )
+    static let locationDisabled = AlertItem(
+        title: Text("Locations Service Disabled"),
+        message: Text("Your phones location services are disabled. To chnage that goe to your device Settings > Privacy > Location Services"),
+        dismissButton: .default(Text("OK"))
+    )
+    
 }
