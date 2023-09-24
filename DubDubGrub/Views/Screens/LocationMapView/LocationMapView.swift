@@ -22,7 +22,7 @@ struct LocationMapView: View {
             Map(coordinateRegion: $viewModel.region, annotationItems: locationManager.locations) { location in
                 //Simple Map pin
                 //MapPin(coordinate: $0.location.coordinate)
-                MapMarker( coordinate: location.location.coordinate, tint: .red)
+                MapMarker( coordinate: location.location.coordinate, tint: .brandPrimary)
                    
             }
             .ignoresSafeArea()
