@@ -19,7 +19,13 @@ struct LocationMapView: View {
     
     var body: some View {
         ZStack{
-            Map(coordinateRegion: $viewModel.region).ignoresSafeArea()
+            Map(coordinateRegion: $viewModel.region, annotationItems: locationManager.locations) { location in
+                //Simple Map pin
+                //MapPin(coordinate: $0.location.coordinate)
+                MapMarker( coordinate: location.location.coordinate, tint: .red)
+                   
+            }
+            .ignoresSafeArea()
             
             VStack{
                 LogoView().shadow(radius: 10)
@@ -33,8 +39,11 @@ struct LocationMapView: View {
             //Prevents us from loading the Locations each time we go to the view
             
             if locationManager.locations.isEmpty{
-                viewModel.getLocations(for: locationManager)                
+                viewModel.getLocations(for: locationManager)
             }
+            
+            print(locationManager.locations)
+            
         }
     }
 }
