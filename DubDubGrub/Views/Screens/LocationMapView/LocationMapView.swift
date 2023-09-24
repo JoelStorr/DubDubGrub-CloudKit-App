@@ -10,6 +10,8 @@ import MapKit
 
 struct LocationMapView: View {
     
+    @EnvironmentObject private var locationManager: LocationManager
+    
    @StateObject private var viewModel = LocationMapViewModel()
     
     @State private var alertItem: AlertItem?
@@ -28,7 +30,11 @@ struct LocationMapView: View {
             Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
         })
         .onAppear(){
-            viewModel.getLocations()
+            //Prevents us from loading the Locations each time we go to the view
+            
+            if locationManager.locations.isEmpty{
+                viewModel.getLocations(for: locationManager)                
+            }
         }
     }
 }
