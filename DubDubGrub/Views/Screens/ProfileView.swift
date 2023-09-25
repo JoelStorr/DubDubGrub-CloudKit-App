@@ -15,6 +15,7 @@ struct ProfileView: View {
     @State private var companyName = ""
     @State private var bio = ""
     @State private var avatar = PlaceholderImage.avatar
+    @State private var isShowingPhotoPicker = false
     
     @State var charNumber: Int = 100
     @State var bioText: String = ""
@@ -34,6 +35,7 @@ struct ProfileView: View {
                         }
                         .padding(.leading, 12)
                         //TODO: Add Tap gesture on image
+                        .onTapGesture { isShowingPhotoPicker = true }
                         VStack(spacing: 1){
                             TextField("First Name", text: $firstName)
                                 .profileNameStyle()
@@ -71,6 +73,9 @@ struct ProfileView: View {
            
             }
             .navigationTitle("Profile")
+            .sheet(isPresented: $isShowingPhotoPicker){
+                PhotoPicker(image: $avatar)
+            }
             
         
     }

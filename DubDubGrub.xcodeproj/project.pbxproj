@@ -21,6 +21,7 @@
 		406561A52AC17BE300A193BA /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406561A42AC17BE300A193BA /* OnboardView.swift */; };
 		406561A72AC17C8700A193BA /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406561A62AC17C8700A193BA /* LogoView.swift */; };
 		406561AA2AC1826700A193BA /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406561A92AC1826700A193BA /* XDismissButton.swift */; };
+		406561AD2AC1D48700A193BA /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406561AC2AC1D48700A193BA /* PhotoPicker.swift */; };
 		40733D0E2AB72FD600340EED /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40733D0D2AB72FD600340EED /* View+Ext.swift */; };
 		409DF05E2AC03C48002E7C47 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409DF05D2AC03C48002E7C47 /* LocationManager.swift */; };
 		40BE27D92AB63F0B004F93D9 /* DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BE27D82AB63F0B004F93D9 /* DubDubGrubApp.swift */; };
@@ -52,6 +53,7 @@
 		406561A42AC17BE300A193BA /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
 		406561A62AC17C8700A193BA /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		406561A92AC1826700A193BA /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
+		406561AC2AC1D48700A193BA /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		40733D0D2AB72FD600340EED /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		409DF05D2AC03C48002E7C47 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		40BE27D52AB63F0B004F93D9 /* DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +170,7 @@
 		406561AB2AC1D41F00A193BA /* UIKit Components */ = {
 			isa = PBXGroup;
 			children = (
+				406561AC2AC1D48700A193BA /* PhotoPicker.swift */,
 			);
 			path = "UIKit Components";
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				40614B0B2ABDA38200D28ADF /* AlertItem.swift in Sources */,
 				40BE27F02AB65690004F93D9 /* ProfileView.swift in Sources */,
 				40C417CF2ABB763E006A2CEE /* MockData.swift in Sources */,
+				406561AD2AC1D48700A193BA /* PhotoPicker.swift in Sources */,
 				40230F362AB99178002FBFF7 /* Label+Ext.swift in Sources */,
 				406561A72AC17C8700A193BA /* LogoView.swift in Sources */,
 				40BE27E82AB655AF004F93D9 /* Color+Ext.swift in Sources */,
