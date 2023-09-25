@@ -34,12 +34,15 @@ struct LocationMapView: View {
                 Spacer()
             }
         }
+        .sheet(isPresented: $viewModel.isShowingOnboardview, onDismiss: viewModel.checkIfLocationServicesIsEnabled) {
+            OnboardView(isShowingOnboardView: $viewModel.isShowingOnboardview)
+        }
         .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
         })
         .onAppear(){
             
-            viewModel.checkIfLocationServicesIsEnabled()
+            viewModel.runStartUpChecks()
             
             //Prevents us from loading the Locations each time we go to the view
             
