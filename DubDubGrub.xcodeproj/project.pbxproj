@@ -18,6 +18,9 @@
 		405E71C32AB7964500DF6D25 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405E71C22AB7964500DF6D25 /* LocationDetailView.swift */; };
 		40614B092ABDA00400D28ADF /* CKRecord+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40614B082ABDA00400D28ADF /* CKRecord+Ext.swift */; };
 		40614B0B2ABDA38200D28ADF /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40614B0A2ABDA38200D28ADF /* AlertItem.swift */; };
+		406561A52AC17BE300A193BA /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406561A42AC17BE300A193BA /* OnboardView.swift */; };
+		406561A72AC17C8700A193BA /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406561A62AC17C8700A193BA /* LogoView.swift */; };
+		406561AA2AC1826700A193BA /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406561A92AC1826700A193BA /* XDismissButton.swift */; };
 		40733D0E2AB72FD600340EED /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40733D0D2AB72FD600340EED /* View+Ext.swift */; };
 		409DF05E2AC03C48002E7C47 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409DF05D2AC03C48002E7C47 /* LocationManager.swift */; };
 		40BE27D92AB63F0B004F93D9 /* DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BE27D82AB63F0B004F93D9 /* DubDubGrubApp.swift */; };
@@ -46,6 +49,9 @@
 		405E71C22AB7964500DF6D25 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		40614B082ABDA00400D28ADF /* CKRecord+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKRecord+Ext.swift"; sourceTree = "<group>"; };
 		40614B0A2ABDA38200D28ADF /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
+		406561A42AC17BE300A193BA /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
+		406561A62AC17C8700A193BA /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
+		406561A92AC1826700A193BA /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
 		40733D0D2AB72FD600340EED /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		409DF05D2AC03C48002E7C47 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		40BE27D52AB63F0B004F93D9 /* DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +121,7 @@
 				40BE27ED2AB65672004F93D9 /* LocationListView.swift */,
 				405E71C22AB7964500DF6D25 /* LocationDetailView.swift */,
 				40BE27EF2AB65690004F93D9 /* ProfileView.swift */,
+				406561A42AC17BE300A193BA /* OnboardView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -130,8 +137,9 @@
 		4033E28C2ABA2A7D004E51F4 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				406561A82AC1825100A193BA /* Buttons */,
 				40230F3B2AB9B8E3002FBFF7 /* AvatarView.swift */,
-				4033E2862ABA25B3004E51F4 /* DDGButton.swift */,
+				406561A62AC17C8700A193BA /* LogoView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -145,6 +153,15 @@
 				40614B0A2ABDA38200D28ADF /* AlertItem.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		406561A82AC1825100A193BA /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				406561A92AC1826700A193BA /* XDismissButton.swift */,
+				4033E2862ABA25B3004E51F4 /* DDGButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		409DF05C2AC03C2B002E7C47 /* Managers */ = {
@@ -275,9 +292,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				40733D0E2AB72FD600340EED /* View+Ext.swift in Sources */,
+				406561AA2AC1826700A193BA /* XDismissButton.swift in Sources */,
 				40BE27D92AB63F0B004F93D9 /* DubDubGrubApp.swift in Sources */,
 				405E71C32AB7964500DF6D25 /* LocationDetailView.swift in Sources */,
 				40C417CD2ABB726F006A2CEE /* DDGProfile.swift in Sources */,
+				406561A52AC17BE300A193BA /* OnboardView.swift in Sources */,
 				40399A6C2ABC57560076F30B /* CloudKitManager.swift in Sources */,
 				40BE27EC2AB65649004F93D9 /* LocationMapView.swift in Sources */,
 				40230F3C2AB9B8E3002FBFF7 /* AvatarView.swift in Sources */,
@@ -293,6 +312,7 @@
 				40BE27F02AB65690004F93D9 /* ProfileView.swift in Sources */,
 				40C417CF2ABB763E006A2CEE /* MockData.swift in Sources */,
 				40230F362AB99178002FBFF7 /* Label+Ext.swift in Sources */,
+				406561A72AC17C8700A193BA /* LogoView.swift in Sources */,
 				40BE27E82AB655AF004F93D9 /* Color+Ext.swift in Sources */,
 				40399A6E2ABC76EC0076F30B /* Constants.swift in Sources */,
 				40614B092ABDA00400D28ADF /* CKRecord+Ext.swift in Sources */,
