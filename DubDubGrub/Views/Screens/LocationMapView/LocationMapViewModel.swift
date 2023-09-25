@@ -11,7 +11,7 @@ import MapKit
 
 final class LocationMapViewModel: NSObject, ObservableObject {
     
-    @Published var isShowingOnboardview = true
+    @Published var isShowingOnboardview = false
     @Published var alertItem: AlertItem?
     
     @Published var region = MKCoordinateRegion(
