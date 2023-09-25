@@ -137,6 +137,7 @@
 		4033E28C2ABA2A7D004E51F4 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				406561AB2AC1D41F00A193BA /* UIKit Components */,
 				406561A82AC1825100A193BA /* Buttons */,
 				40230F3B2AB9B8E3002FBFF7 /* AvatarView.swift */,
 				406561A62AC17C8700A193BA /* LogoView.swift */,
@@ -162,6 +163,13 @@
 				4033E2862ABA25B3004E51F4 /* DDGButton.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		406561AB2AC1D41F00A193BA /* UIKit Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "UIKit Components";
 			sourceTree = "<group>";
 		};
 		409DF05C2AC03C2B002E7C47 /* Managers */ = {

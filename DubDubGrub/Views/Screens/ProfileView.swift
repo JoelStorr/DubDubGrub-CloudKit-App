@@ -14,6 +14,7 @@ struct ProfileView: View {
     @State private var lastName = ""
     @State private var companyName = ""
     @State private var bio = ""
+    @State private var avatar = PlaceholderImage.avatar
     
     @State var charNumber: Int = 100
     @State var bioText: String = ""
@@ -28,7 +29,7 @@ struct ProfileView: View {
                     
                     HStack(spacing: 16){
                         ZStack{
-                            AvatarView(size: 84)
+                            AvatarView(image: avatar,size: 84)
                             EditImage()
                         }
                         .padding(.leading, 12)
