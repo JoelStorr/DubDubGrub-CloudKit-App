@@ -17,9 +17,10 @@ struct ProfileView: View {
     @State var charNumber: Int = 100
     @State var bioText: String = ""
     
-
+    
     var body: some View {
         
+        ZStack {
             VStack{
                 //SECTION: Top Card
                 ZStack{
@@ -31,7 +32,6 @@ struct ProfileView: View {
                             EditImage()
                         }
                         .padding(.leading, 12)
-                        //TODO: Add Tap gesture on image
                         .onTapGesture { viewModel.isShowingPhotoPicker = true }
                         VStack(spacing: 1){
                             TextField("First Name", text: $viewModel.firstName).profileNameStyle()
@@ -53,30 +53,34 @@ struct ProfileView: View {
                 .padding(.horizontal, 20)
                 
                 Spacer()
-                    
+                
                 Button {
-                    //createProfile()
+                    viewModel.createProfile()
                 } label: {
                     DDGButton(title: "Create Profile")
                 }.padding(.bottom)
             }
-            .navigationTitle("Profile")
-            .toolbar(content: {
-                Button{
-                    dismissKeyboard()
-                }label: {
-                    Image(systemName: "keyboard.chevron.compact.down")
-                }
-            })
-            .onAppear{
-                viewModel.getProfile()
+            
+            if viewModel.isLoading { LoadingView() }
+        }
+        .navigationTitle("Profile")
+        .toolbar(content: {
+            Button{
+                dismissKeyboard()
+            }label: {
+                Image(systemName: "keyboard.chevron.compact.down")
             }
-            .alert(item: $viewModel.alertItem, content: { alertItem in
-                Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
-            })
-            .sheet(isPresented: $viewModel.isShowingPhotoPicker){
-                PhotoPicker(image: $viewModel.avatar)
-            }
+        })
+        .onAppear{
+            viewModel.getProfile()
+        }
+        .alert(item: $viewModel.alertItem, content: { alertItem in
+            Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
+        })
+        .sheet(isPresented: $viewModel.isShowingPhotoPicker){
+            PhotoPicker(image: $viewModel.avatar)
+        }
+        
     }
 }
 

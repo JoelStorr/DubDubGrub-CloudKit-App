@@ -8,7 +8,7 @@
 import CloudKit
 
 
-final class ProfileViewModel: ObservableObject{
+final class ProfileViewModel: ObservableObject {
     
     
     @Published var firstName = ""
@@ -17,6 +17,7 @@ final class ProfileViewModel: ObservableObject{
     @Published var bio = ""
     @Published var avatar = PlaceholderImage.avatar
     @Published var isShowingPhotoPicker = false
+    @Published var isLoading = false
     @Published var alertItem: AlertItem?
     
     func isValidProfile()-> Bool{
@@ -25,7 +26,7 @@ final class ProfileViewModel: ObservableObject{
               !companyName.isEmpty,
               !bio.isEmpty,
               avatar != PlaceholderImage.avatar,
-              bio.count < 100 else { return false }
+              bio.count <= 100 else { return false }
         return true
     }
     
@@ -39,71 +40,68 @@ final class ProfileViewModel: ObservableObject{
         //Create CKRecord from profile view
         let profileRecord = createProfileRecord()
         
-        //Get the User Record ID from Container
-        CKContainer.default().fetchUserRecordID { recordID, error in
-            guard let recordID = recordID, error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            //Get Userrecord from the Public Database
-            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
-                guard let userRecord = userRecord, error == nil else {
-                    print(error!.localizedDescription)
-                    return
-                }
-                //Create reference on UserRecord to the DDGProfile we created
-                //.deleteSelf will delete the Profile when the userRercord gets deleted
-                userRecord["userProfile"] = CKRecord.Reference(recordID: profileRecord.recordID, action: .none)
-                
-                //Create a CKOpertation to save our User and Profile Records
-                let operation = CKModifyRecordsOperation(recordsToSave: [userRecord, profileRecord])
-                operation.modifyRecordsCompletionBlock = { savedRecords, _, error in
-                    guard let savedRecords = savedRecords, error == nil else {
-                        print(error!.localizedDescription)
-                        return
-                    }
-                    print(savedRecords)
-                }
-                //Fires of Operation
-                CKContainer.default().publicCloudDatabase.add(operation)
-            }
+        
+        //Rewrite with CLoud Kit Manager
+        guard let userRecord = CloudKitManager.shared.userRecord else {
+            //TODO: Show alert
+            return
         }
-    }
-    
-    
-    func getProfile(){
-        //Get the User Record ID from Container
-        CKContainer.default().fetchUserRecordID { recordID, error in
-            guard let recordID = recordID, error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            //Get Userrecord from the Public Database
-            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
-                guard let userRecord = userRecord, error == nil else {
-                    print(error!.localizedDescription)
-                    return
+        //Create reference on UserRecord to the DDGProfile we created
+        //.deleteSelf will delete the Profile when the userRercord gets deleted
+        userRecord["userProfile"] = CKRecord.Reference(recordID: profileRecord.recordID, action: .none)
+        
+        showLoadingView()
+        
+        CloudKitManager.shared.batchSave(records: [userRecord, profileRecord]) { result in
+            
+            DispatchQueue.main.async{ [self] in
+                hideLoadingView()
+                switch result{
+                case .success(_):
+                    //TODO: Show Alert
+                    break
+                case .failure(_):
+                    //TODO: Show Alert
+                    break
                 }
-                
-                //The record ID that points to the profille we want
-                let profileReference = userRecord["userProfile"] as! CKRecord.Reference
-                let profileRecordID = profileReference.recordID
-                
-                CKContainer.default().publicCloudDatabase.fetch(withRecordID: profileRecordID) { profileRecord, error in
-                    guard let profileRecord = profileRecord, error == nil else {
-                        print(error!.localizedDescription)
-                        return
-                    }
-                    
+            }
+            
+        }
+        
+    }
+    func getProfile(){
+        
+        
+        guard let userRecord = CloudKitManager.shared.userRecord else {
+            //TODO: Show alert
+            return
+        }
+        
+        //The record ID that points to the profille we want
+        guard let profileReference = userRecord["userProfile"] as? CKRecord.Reference else {
+            //TODO: Show alert
+            return
+        }
+        let profileRecordID = profileReference.recordID
+        
+        showLoadingView()
+        
+        CloudKitManager.shared.fetchRecord(with: profileRecordID) { result in
+            
+            DispatchQueue.main.async { [self] in
+                hideLoadingView()
+                switch result{
+                case .success(let record):
                     //Mathch Server data to UI State varaibles
-                    DispatchQueue.main.async { [self] in
-                        let profile = DDGProfile(record: profileRecord)
-                        firstName = profile.firstName
-                        lastName = profile.lastName
-                        companyName = profile.companyName
-                        bio = profile.bio
-                        avatar = profile.createAvatarImage()
-                    }
+                    let profile = DDGProfile(record: record)
+                    firstName = profile.firstName
+                    lastName = profile.lastName
+                    companyName = profile.companyName
+                    bio = profile.bio
+                    avatar = profile.createAvatarImage()
+                case .failure(_):
+                    //TODO: Show Alert
+                    return
                 }
             }
         }
@@ -121,5 +119,9 @@ final class ProfileViewModel: ObservableObject{
         
         return profileRecord
     }
+    
+    private func showLoadingView() { isLoading = true }
+    private func hideLoadingView() { isLoading = false }
+    
     
 }

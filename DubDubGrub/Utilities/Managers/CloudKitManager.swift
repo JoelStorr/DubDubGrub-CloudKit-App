@@ -8,10 +8,41 @@
 import CloudKit
 
 
-struct CloudKitManager{
+final class CloudKitManager{
     
     
-    static func getLocations(completed: @escaping (Result<[DDGLocation], Error>) -> Void) {
+    
+    
+    static let shared = CloudKitManager()
+    
+    
+    private init(){}
+    
+    
+    var userRecord: CKRecord?
+    
+    
+    func getUserRecord(){
+        //Get the User Record ID from Container
+        CKContainer.default().fetchUserRecordID { recordID, error in
+            guard let recordID = recordID, error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            //Get Userrecord from the Public Database
+            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
+                guard let userRecord = userRecord, error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                self.userRecord = userRecord
+                
+            }
+        }
+    }
+    
+    func getLocations(completed: @escaping (Result<[DDGLocation], Error>) -> Void) {
         //Sorts the Elements by Name in a decending order
         let alphabeticalSort = NSSortDescriptor(key: DDGLocation.kName, ascending: true)
         
@@ -46,12 +77,7 @@ struct CloudKitManager{
                         completed(.success(locations))
                 }
             }
-        
-        
-        
-        
-        
-        
+
         /* Depricated:
          //Using the Query
          CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { records, error in
@@ -82,6 +108,35 @@ struct CloudKitManager{
          
          */
     }
+    
+    
+    func batchSave(records: [CKRecord], completed: @escaping(Result<[CKRecord], Error>)->Void){
+        
+        //Create a CKOpertation to save our User and Profile Records
+        let operation = CKModifyRecordsOperation(recordsToSave: records)
+        operation.modifyRecordsCompletionBlock = { savedRecords, _, error in
+            guard let savedRecords = savedRecords, error == nil else {
+                print(error!.localizedDescription)
+                completed(.failure(error!))
+                return
+            }
+            completed(.success(savedRecords))
+        }
+        //Fires of Operation
+        CKContainer.default().publicCloudDatabase.add(operation)
+    }
+    
+    func fetchRecord(with id: CKRecord.ID, completed: @escaping(Result<CKRecord, Error>)->Void){
+        CKContainer.default().publicCloudDatabase.fetch(withRecordID: id) { record, error in
+            guard let record = record, error == nil else {
+                completed(.failure(error!))
+                return
+            }
+            
+            completed(.success(record))
+        }
+    }
+    
     
     
 }
