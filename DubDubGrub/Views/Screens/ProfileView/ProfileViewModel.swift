@@ -43,7 +43,7 @@ final class ProfileViewModel: ObservableObject {
         
         //Rewrite with CLoud Kit Manager
         guard let userRecord = CloudKitManager.shared.userRecord else {
-            //TODO: Show alert
+            alertItem = AlertContext.noUserRecord
             return
         }
         //Create reference on UserRecord to the DDGProfile we created
@@ -58,10 +58,9 @@ final class ProfileViewModel: ObservableObject {
                 hideLoadingView()
                 switch result{
                 case .success(_):
-                    //TODO: Show Alert
-                    break
+                    alertItem = AlertContext.createProfileSuccess
                 case .failure(_):
-                    //TODO: Show Alert
+                    alertItem = AlertContext.createProfileFailure
                     break
                 }
             }
@@ -73,15 +72,12 @@ final class ProfileViewModel: ObservableObject {
         
         
         guard let userRecord = CloudKitManager.shared.userRecord else {
-            //TODO: Show alert
+            alertItem = AlertContext.noUserRecord
             return
         }
         
         //The record ID that points to the profille we want
-        guard let profileReference = userRecord["userProfile"] as? CKRecord.Reference else {
-            //TODO: Show alert
-            return
-        }
+        guard let profileReference = userRecord["userProfile"] as? CKRecord.Reference else { return }
         let profileRecordID = profileReference.recordID
         
         showLoadingView()
@@ -100,7 +96,7 @@ final class ProfileViewModel: ObservableObject {
                     bio = profile.bio
                     avatar = profile.createAvatarImage()
                 case .failure(_):
-                    //TODO: Show Alert
+                    alertItem = AlertContext.unableToGetProfile
                     return
                 }
             }

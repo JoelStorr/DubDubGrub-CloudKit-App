@@ -48,4 +48,31 @@ struct AlertContext{
         dismissButton: .default(Text("OK"))
     )
     
+    static let noUserRecord = AlertItem(
+        title: Text("No User Record"),
+        message: Text("You must log into iCloud on your phoen in order to utilize Dub Dub Grub's profiel. Pleas log in on your phone's settings screen."),
+        dismissButton: .default(Text("OK"))
+    )
+    
+    static let createProfileSuccess = AlertItem(
+        title: Text("Profile Created Successfully."),
+        message: Text("Your profile has successfully been created."),
+        dismissButton: .default(Text("OK"))
+    )
+    
+    static let createProfileFailure = AlertItem(
+        title: Text("Failed to Create Profile"),
+        message: Text("We were unabel to create your profile at this time.\n Pleas try again later or contact customer support if this persists."),
+        dismissButton: .default(Text("OK"))
+    )
+    
+    static let unableToGetProfile = AlertItem(
+        title: Text("Unable To Retrieve Profile"),
+        message: Text("We were unabel to retrieve your profile at this time.\n Pleas try again later or contact customer support if this persists."),
+        dismissButton: .default(Text("OK"))
+    )
+    
+    
+    
+    
 }
