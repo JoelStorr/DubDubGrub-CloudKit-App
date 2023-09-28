@@ -72,6 +72,18 @@ struct AlertContext{
         dismissButton: .default(Text("OK"))
     )
     
+    static let updateProfileSuccess = AlertItem(
+        title: Text("Profile Update Success"),
+        message: Text("Your Dub Dub Grub Profile was updated successfully."),
+        dismissButton: .default(Text("OK"))
+    )
+    
+    static let updateProfileFailure = AlertItem(
+        title: Text("Profile Update Failed"),
+        message: Text("We were unable to update your profile at this time.\nPlease try again later"),
+        dismissButton: .default(Text("OK"))
+    )
+    
     
     
     

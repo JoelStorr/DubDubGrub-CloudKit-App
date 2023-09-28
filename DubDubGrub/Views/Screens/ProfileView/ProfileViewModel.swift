@@ -20,6 +20,9 @@ final class ProfileViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var alertItem: AlertItem?
     
+    
+    private var existingProfileRecord: CKRecord?
+    
     func isValidProfile()-> Bool{
         guard !firstName.isEmpty,
               !lastName.isEmpty,
@@ -57,7 +60,10 @@ final class ProfileViewModel: ObservableObject {
             DispatchQueue.main.async{ [self] in
                 hideLoadingView()
                 switch result{
-                case .success(_):
+                case .success(let records):
+                    for record in records where record.recordType == RecordType.profile{
+                        existingProfileRecord = record
+                    }
                     alertItem = AlertContext.createProfileSuccess
                 case .failure(_):
                     alertItem = AlertContext.createProfileFailure
@@ -88,6 +94,7 @@ final class ProfileViewModel: ObservableObject {
                 hideLoadingView()
                 switch result{
                 case .success(let record):
+                    existingProfileRecord = record
                     //Mathch Server data to UI State varaibles
                     let profile = DDGProfile(record: record)
                     firstName = profile.firstName
@@ -102,6 +109,41 @@ final class ProfileViewModel: ObservableObject {
             }
         }
     }
+    
+    
+    func upadteProfile(){
+        guard isValidProfile() else {
+            alertItem = AlertContext.invalidProfile
+            return
+        }
+        
+        guard let profileRecord = existingProfileRecord else {
+            alertItem = AlertContext.unableToGetProfile
+            return
+        }
+        
+        profileRecord[DDGProfile.kFirstName] = firstName
+        profileRecord[DDGProfile.kLastName] = lastName
+        profileRecord[DDGProfile.kCompanyName] = companyName
+        profileRecord[DDGProfile.kBio] = bio
+        profileRecord[DDGProfile.kAvatar] = avatar.convertToCKAsset()
+        
+        showLoadingView()
+        CloudKitManager.shared.save(record: profileRecord) { result in
+            
+            DispatchQueue.main.async { [self] in
+                hideLoadingView()
+                switch result {
+                case .success(_):
+                    alertItem = AlertContext.updateProfileSuccess
+                case .failure(_):
+                    alertItem = AlertContext.updateProfileFailure
+                }
+            }
+            
+        }
+    }
+    
     
     
     private func createProfileRecord() -> CKRecord {
