@@ -11,6 +11,7 @@ struct ProfileModalView: View {
     
     
     var profile: DDGProfile
+    @Binding var isShowingProfileModal: Bool
     
     var body: some View {
         ZStack{
@@ -38,7 +39,9 @@ struct ProfileModalView: View {
             .cornerRadius(16)
             .overlay(
                 Button{
-                    //TODO: Add dismis function
+                    withAnimation{
+                        isShowingProfileModal = false                        
+                    }
                 } label:{
                     XDismissButton()
                 }, alignment: .topTrailing
@@ -56,5 +59,5 @@ struct ProfileModalView: View {
 }
 
 #Preview {
-    ProfileModalView(profile: DDGProfile(record: MockData.profile))
+    ProfileModalView(profile: DDGProfile(record: MockData.profile), isShowingProfileModal: .constant(true))
 }

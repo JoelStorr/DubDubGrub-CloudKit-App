@@ -13,6 +13,7 @@ final class LocationDetailViewModel: ObservableObject {
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     @Published var alertItem: AlertItem?
+    @Published var isSHowingProfileModal: Bool = false
     
     var location : DDGLocation
     
