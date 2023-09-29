@@ -85,6 +85,19 @@ struct AlertContext{
     )
     
     
+    //MARK: Location Detail Screen
+    static let invalidPhoneNumber = AlertItem(
+        title: Text("Invalid Phone Number"),
+        message: Text("The phonen number for the location is invalid"),
+        dismissButton: .default(Text("OK"))
+    )
+    
+    static let phoneUnsupportedDevice = AlertItem(
+        title: Text("You can't call from this device"),
+        message: Text("You can't call from this device. Please use a iPhone to call from"),
+        dismissButton: .default(Text("OK"))
+    )
+    
     
     
 }
