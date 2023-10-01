@@ -49,7 +49,7 @@ struct LocationDetailView: View {
                             LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
                         }
                         Button{
-                            
+                            viewModel.upadteCheckinStatus(to: .checkedOut)
                         }label: {
                             LocationActionButton(color: .brandPrimary, imageName: "person.fill.checkmark")
                         }

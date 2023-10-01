@@ -20,6 +20,7 @@ final class CloudKitManager{
     
     
     var userRecord: CKRecord?
+    var profileRecordID: CKRecord.ID?
     
     
     func getUserRecord(){
@@ -37,6 +38,11 @@ final class CloudKitManager{
                     return
                 }
                 self.userRecord = userRecord
+                
+                //If we have a user Profile set the reference id 
+                if let profileReference = userRecord["userProfile"] as? CKRecord.Reference {
+                    self.profileRecordID = profileReference.recordID
+                }
                 
             }
         }
