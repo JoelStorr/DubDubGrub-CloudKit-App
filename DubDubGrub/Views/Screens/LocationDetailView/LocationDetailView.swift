@@ -49,7 +49,7 @@ struct LocationDetailView: View {
                             LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
                         }
                         Button{
-                            viewModel.upadteCheckinStatus(to: .checkedOut)
+                            viewModel.upadteCheckinStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
                         }label: {
                             LocationActionButton(color: .brandPrimary, imageName: "person.fill.checkmark")
                         }
@@ -63,7 +63,9 @@ struct LocationDetailView: View {
                 
                 ScrollView{
                     LazyVGrid(columns: viewModel.columns) {
-                        FirstNameAvtarView(image: PlaceholderImage.avatar, firstName: "Sean")
+                        ForEach(viewModel.checkedInProfiles){ profile in
+                            FirstNameAvtarView(profile: profile)
+                        }
                             .onTapGesture {
                                 viewModel.isSHowingProfileModal = true
                             }
@@ -95,6 +97,7 @@ struct LocationDetailView: View {
                 .zIndex(2)
             }
         }
+        .onAppear{viewModel.getCheckedInProfiles()}
         .navigationTitle(viewModel.location.name)
         .navigationBarTitleDisplayMode(.inline)
         .alert(item: $viewModel.alertItem, content: { alertItem in
@@ -140,13 +143,12 @@ struct LocationActionButton: View {
 
 struct FirstNameAvtarView: View {
     
-    var image: UIImage
-    var firstName: String
+    var profile: DDGProfile
     
     var body: some View{
         VStack{
-            AvatarView(image: image, size: 64)
-            Text(firstName)
+            AvatarView(image: profile.createAvatarImage(), size: 64)
+            Text(profile.firstName)
                 .bold()
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
