@@ -47,11 +47,18 @@ struct LocationDetailView: View {
                         }label: {
                             LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
                         }
-                        Button{
-                            viewModel.upadteCheckinStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
-                        }label: {
-                            LocationActionButton(color: .brandPrimary, imageName: "person.fill.checkmark")
+                        
+                        if let _ = CloudKitManager.shared.profileRecordID {
+                            Button{
+                                viewModel.upadteCheckinStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
+                            }label: {
+                                LocationActionButton(
+                                    color: viewModel.isCheckedIn ? .grubRed : .brandPrimary,
+                                    imageName: viewModel.isCheckedIn ? "person.fill.xmark" :  "person.fill.checkmark"
+                                )
+                            }
                         }
+                        
                     }
                     
                 }
@@ -105,7 +112,10 @@ struct LocationDetailView: View {
                 .zIndex(2)
             }
         }
-        .onAppear{viewModel.getCheckedInProfiles()}
+        .onAppear{
+            viewModel.getCheckedInProfiles()
+            viewModel.getCheckedInStatus()
+        }
         .navigationTitle(viewModel.location.name)
         .navigationBarTitleDisplayMode(.inline)
         .alert(item: $viewModel.alertItem, content: { alertItem in
