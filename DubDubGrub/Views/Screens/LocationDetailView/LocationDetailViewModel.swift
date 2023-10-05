@@ -41,7 +41,6 @@ final class LocationDetailViewModel: ObservableObject {
     
     
     func callLocation(){
-        
         //replace with location.phoneNumber
         guard let url = URL(string: "tel://\("000000000000")") else {
             alertItem = AlertContext.invalidPhoneNumber
@@ -54,11 +53,35 @@ final class LocationDetailViewModel: ObservableObject {
         }
     }
     
+    func getCheckedInStatus(){
+        guard let profileRcordID = CloudKitManager.shared.profileRecordID else { return }
+        
+        
+        CloudKitManager.shared.fetchRecord(with: profileRcordID) { result in
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let record):
+                    if let reference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference {
+                        self.isCheckedIn = reference.recordID == self.location.id
+                    }
+                    else {
+                        self.isCheckedIn = false
+                    }
+                case .failure(_):
+                    self.alertItem = AlertContext.unableToGetCheckedInStatus
+                }
+            }
+            
+        }
+    }
+    
+    
     func upadteCheckinStatus(to checkInStatus: checkInStatus){
         //Retrive the DDGProfile
         
         guard let profileRcordID = CloudKitManager.shared.profileRecordID else {
-            //Show alert
+            alertItem = AlertContext.unableToGetProfile
             return
         }
         
@@ -94,15 +117,14 @@ final class LocationDetailViewModel: ObservableObject {
                             }
                             
                             self.isCheckedIn = checkInStatus == .checkedIn
-                            print("✅ Successfully checked in / out")
                             
                         case .failure(_):
-                            print("❌ Error saving record")
+                            self.alertItem = AlertContext.unableToCheckInOrOut
                         }
                     }
                 }
             case .failure(_):
-                print("❌ Error fetching record")
+                alertItem = AlertContext.unableToCheckInOrOut
             }
         }
     }
@@ -117,10 +139,10 @@ final class LocationDetailViewModel: ObservableObject {
                 case .success(let profiles):
                     self.checkedInProfiles = profiles
                 case .failure(_):
-                    //TODO: Erro Message
+                    self.alertItem = AlertContext.unableToGetCheckedInProfiles
                     print("Error fetching checkdIn Profiles")
                 }
-                hideLoadingView()
+                self.hideLoadingView()
             }
         }
     }
