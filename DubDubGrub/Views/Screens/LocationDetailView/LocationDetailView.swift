@@ -26,7 +26,6 @@ struct LocationDetailView: View {
                 .padding(.horizontal)
                 DescriptionView(text: viewModel.location.description)
                 
-                
                 ZStack{
                     Capsule()
                         .frame(height: 80)
@@ -61,22 +60,31 @@ struct LocationDetailView: View {
                     .bold()
                     .font(.title2)
                 
-                ScrollView{
-                    LazyVGrid(columns: viewModel.columns) {
-                        ForEach(viewModel.checkedInProfiles){ profile in
-                            FirstNameAvtarView(profile: profile)
-                        }
-                            .onTapGesture {
-                                viewModel.isSHowingProfileModal = true
+                
+                ZStack{
+                    
+                    if viewModel.checkedInProfiles.isEmpty {
+                        Text("Nobody's Here 😔")
+                            .bold()
+                            .font(.title2)
+                            .foregroundColor(Color.secondary)
+                            .padding(.top, 30)
+                    }else{
+                        ScrollView{
+                            LazyVGrid(columns: viewModel.columns) {
+                                ForEach(viewModel.checkedInProfiles){ profile in
+                                    FirstNameAvtarView(profile: profile)
+                                }
+                                .onTapGesture {
+                                    viewModel.isSHowingProfileModal = true
+                                }
                             }
-                       
+                        }
                     }
+                    
+                    if viewModel.isLoading { LoadingView() }
                 }
-                
-                
-                
                 Spacer()
-                
             }
             
             if viewModel.isSHowingProfileModal {
@@ -136,7 +144,6 @@ struct LocationActionButton: View {
                 .scaledToFit()
                 .foregroundColor(.white)
                 .frame(width: 22, height: 22)
-            
         }
     }
 }
@@ -154,7 +161,6 @@ struct FirstNameAvtarView: View {
                 .minimumScaleFactor(0.75)
         }
     }
-    
 }
 
 struct BannerImageView: View {
