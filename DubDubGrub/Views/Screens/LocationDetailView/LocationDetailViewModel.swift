@@ -93,14 +93,14 @@ final class LocationDetailViewModel: ObservableObject {
                 case .checkedIn:
                     //Update check in Status
                     record[DDGProfile.kIsCheckedIn] = CKRecord.Reference(recordID: location.id, action: .none)
+                    record[DDGProfile.kIsCheckedInNilCheck] = 1
                 case .checkedOut:
                     record[DDGProfile.kIsCheckedIn] = nil
+                    record[DDGProfile.kIsCheckedInNilCheck] = nil
                 }
                 
                 //Save the Updated version to CloudKit
                 CloudKitManager.shared.save(record: record) { [self] result in
-                    
-                    
                     DispatchQueue.main.async {
                         switch result{
                         case .success(_):
