@@ -120,7 +120,6 @@
 			children = (
 				4033E2842ABA22EF004E51F4 /* CustomModifires.swift */,
 				4033E28C2ABA2A7D004E51F4 /* Custom Views */,
-				4033E28B2ABA2A6A004E51F4 /* Cells */,
 				4033E28A2ABA2A21004E51F4 /* Screens */,
 			);
 			path = Views;
@@ -129,22 +128,14 @@
 		4033E28A2ABA2A21004E51F4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				40F693B52AD0413600DE68D7 /* LocationListView */,
 				4091EC842AC6BCE400FB0911 /* LocationDetailView */,
 				404CE5212AC45FD100A584DF /* ProfileView */,
 				4025F4812ABF197D0096453B /* LocationMapView */,
 				40BE27E92AB65616004F93D9 /* AppTabView.swift */,
-				40BE27ED2AB65672004F93D9 /* LocationListView.swift */,
 				406561A42AC17BE300A193BA /* OnboardView.swift */,
 			);
 			path = Screens;
-			sourceTree = "<group>";
-		};
-		4033E28B2ABA2A6A004E51F4 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				40230F392AB9B8A6002FBFF7 /* LocationCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		4033E28C2ABA2A7D004E51F4 /* Custom Views */ = {
@@ -261,6 +252,15 @@
 				40C417CE2ABB763E006A2CEE /* MockData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		40F693B52AD0413600DE68D7 /* LocationListView */ = {
+			isa = PBXGroup;
+			children = (
+				40230F392AB9B8A6002FBFF7 /* LocationCell.swift */,
+				40BE27ED2AB65672004F93D9 /* LocationListView.swift */,
+			);
+			path = LocationListView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
