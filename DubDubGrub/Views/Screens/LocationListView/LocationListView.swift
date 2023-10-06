@@ -11,7 +11,7 @@ struct LocationListView: View {
     
     
     @EnvironmentObject private var locationManager: LocationManager
-    
+    @StateObject private var viewModel = LocationListViewModel()
     
     var body: some View {
         NavigationView{
@@ -27,24 +27,17 @@ struct LocationListView: View {
                         )
                     )
                     {
-                        LocationCell(location: location)
+                        LocationCell(
+                            location: location,
+                            profiles: viewModel.checkedInProfiles[location.id, default: []]
+                        )
                     }
                 }
             }
             .onAppear{
-                CloudKitManager.shared.getCheckedInProfilesDictionary { result in
-                    switch result {
-                    case .success(let checkedInProfiles):
-                        print(checkedInProfiles)
-                    case .failure(_):
-                        print("Error getting Profiles")
-                    }
-                }
+                viewModel.getCheckedInProfilesDictionary()
             }
             .navigationTitle("Grub Spots")
-            
-            
-            
         }
     }
 }
