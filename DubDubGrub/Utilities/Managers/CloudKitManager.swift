@@ -167,6 +167,41 @@ final class CloudKitManager{
         CKContainer.default().publicCloudDatabase.add(operation)
     }
     
+    //Get a dictionary of how many people are checked into a given lcation
+    func getCheckedInProfilesCount(completed: @escaping(Result<[CKRecord.ID: Int], Error>)->Void){
+        let predicate = NSPredicate(format: "isCheckedInNilCheck == 1")
+        
+        let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
+        let operation = CKQueryOperation(query: query)
+        //We can also filter the keys we want to get back
+        operation.desiredKeys = [DDGProfile.kIsCheckedIn]
+        
+        
+        var checkedInProfiles: [CKRecord.ID: Int] = [:]
+        operation.recordFetchedBlock = { record in
+            // Building the dictionary
+            guard let locationReference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference else { return }
+            
+            if let count = checkedInProfiles[locationReference.recordID] {
+                checkedInProfiles[locationReference.recordID] = count + 1
+            }else {
+                checkedInProfiles[locationReference.recordID] = 1
+            }
+        }
+        
+        //Runs when all records are done
+        //The cursor holds the current position of the Query sinc cloudkit returns a limited Number of results
+        operation.queryResultBlock = { result in
+            switch result{
+            case .success(_):
+                completed(.success(checkedInProfiles))
+            case .failure(let error):
+                completed(.failure(error))
+            }
+        }
+        CKContainer.default().publicCloudDatabase.add(operation)
+    }
+    
     
     
     

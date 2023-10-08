@@ -6,11 +6,12 @@
 //
 
 import MapKit
-
+import CloudKit
 
 
 final class LocationMapViewModel: ObservableObject {
     
+    @Published var checkedInProfiles: [CKRecord.ID: Int] = [:]
     @Published var isShowingDetailView = false
     @Published var alertItem: AlertItem?
     
@@ -36,6 +37,22 @@ final class LocationMapViewModel: ObservableObject {
                 }
             }
             
+        }
+    }
+    
+    
+    
+    func getCheckedInCount(){
+        CloudKitManager.shared.getCheckedInProfilesCount { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let checkedInProfiles):
+                    self.checkedInProfiles = checkedInProfiles
+                case .failure(_):
+                    //Show alert
+                    break
+                }
+            }
         }
     }
 }
