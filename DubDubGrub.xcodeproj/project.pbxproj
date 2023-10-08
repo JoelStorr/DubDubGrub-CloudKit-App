@@ -41,6 +41,7 @@
 		40C417CD2ABB726F006A2CEE /* DDGProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C417CC2ABB726F006A2CEE /* DDGProfile.swift */; };
 		40C417CF2ABB763E006A2CEE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C417CE2ABB763E006A2CEE /* MockData.swift */; };
 		40C701DF2AC08AFC004DE16F /* CKAsset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C701DE2AC08AFC004DE16F /* CKAsset+Ext.swift */; };
+		40E9328E2AD2E42400974125 /* MapBalloon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E9328D2AD2E42400974125 /* MapBalloon.swift */; };
 		40F693B72AD041BE00DE68D7 /* LocationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F693B62AD041BE00DE68D7 /* LocationListViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		40C417CC2ABB726F006A2CEE /* DDGProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGProfile.swift; sourceTree = "<group>"; };
 		40C417CE2ABB763E006A2CEE /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		40C701DE2AC08AFC004DE16F /* CKAsset+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKAsset+Ext.swift"; sourceTree = "<group>"; };
+		40E9328D2AD2E42400974125 /* MapBalloon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBalloon.swift; sourceTree = "<group>"; };
 		40F693B62AD041BE00DE68D7 /* LocationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 		4033E28C2ABA2A7D004E51F4 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				40E9328C2AD2E40600974125 /* Map Anotation */,
 				406561AB2AC1D41F00A193BA /* UIKit Components */,
 				406561A82AC1825100A193BA /* Buttons */,
 				40230F3B2AB9B8E3002FBFF7 /* AvatarView.swift */,
@@ -256,6 +259,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		40E9328C2AD2E40600974125 /* Map Anotation */ = {
+			isa = PBXGroup;
+			children = (
+				40E9328D2AD2E42400974125 /* MapBalloon.swift */,
+			);
+			path = "Map Anotation";
+			sourceTree = "<group>";
+		};
 		40F693B52AD0413600DE68D7 /* LocationListView */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +371,7 @@
 				40BE27F02AB65690004F93D9 /* ProfileView.swift in Sources */,
 				40C417CF2ABB763E006A2CEE /* MockData.swift in Sources */,
 				406561AD2AC1D48700A193BA /* PhotoPicker.swift in Sources */,
+				40E9328E2AD2E42400974125 /* MapBalloon.swift in Sources */,
 				404CE5202AC42E5C00A584DF /* UIImage+Ext.swift in Sources */,
 				40A13F602AC5BFFB0086848A /* LoadingView.swift in Sources */,
 				40230F362AB99178002FBFF7 /* Label+Ext.swift in Sources */,
