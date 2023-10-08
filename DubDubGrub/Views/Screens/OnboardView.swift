@@ -11,9 +11,7 @@ struct OnboardView: View {
     
     @Binding var isShowingOnboardView: Bool
     
-    
     var body: some View {
-        
         VStack{
             HStack{
                 Spacer()
@@ -47,25 +45,20 @@ struct OnboardView: View {
             .padding(.horizontal, 40)
             Spacer()
         }
-        
     }
 }
 
-#Preview {
-    
-    
 
+#Preview {
     OnboardView(isShowingOnboardView: .constant(true))
 }
 
+
 struct OnboardInfoView: View {
-    
-    
     var imageName: String
     var title: String
     var description: String
-    
-    
+
     var body: some View {
         VStack{
             HStack(spacing: 26){

@@ -7,12 +7,9 @@
 
 import CloudKit
 
-
 enum ProfileContext{ case create, update }
 
-
 final class ProfileViewModel: ObservableObject {
-    
     
     @Published var firstName = ""
     @Published var lastName = ""
@@ -31,7 +28,6 @@ final class ProfileViewModel: ObservableObject {
     
     var profileContext: ProfileContext = .create
     
-    
     func isValidProfile()-> Bool{
         guard !firstName.isEmpty,
               !lastName.isEmpty,
@@ -42,12 +38,10 @@ final class ProfileViewModel: ObservableObject {
         return true
     }
     
+    
     func getCheckedInStatus(){
         guard let profileRcordID = CloudKitManager.shared.profileRecordID else { return }
-        
-        
         CloudKitManager.shared.fetchRecord(with: profileRcordID) { result in
-            
             DispatchQueue.main.async {
                 switch result {
                 case .success(let record):
@@ -135,12 +129,11 @@ final class ProfileViewModel: ObservableObject {
                     break
                 }
             }
-            
         }
-        
     }
+    
+    
     func getProfile(){
-        
         
         guard let userRecord = CloudKitManager.shared.userRecord else {
             alertItem = AlertContext.noUserRecord
@@ -154,7 +147,6 @@ final class ProfileViewModel: ObservableObject {
         showLoadingView()
         
         CloudKitManager.shared.fetchRecord(with: profileRecordID) { result in
-            
             DispatchQueue.main.async { [self] in
                 hideLoadingView()
                 switch result{
@@ -205,10 +197,8 @@ final class ProfileViewModel: ObservableObject {
                     alertItem = AlertContext.updateProfileFailure
                 }
             }
-            
         }
     }
-    
     
     
     private func createProfileRecord() -> CKRecord {
@@ -223,8 +213,7 @@ final class ProfileViewModel: ObservableObject {
         return profileRecord
     }
     
+    
     private func showLoadingView() { isLoading = true }
     private func hideLoadingView() { isLoading = false }
-    
-    
 }

@@ -15,6 +15,5 @@ struct RedBackgroundLabelStyle: LabelStyle {
             .foregroundColor(Color.white)
             .cornerRadius(3.0)
             .font(.system(size: 10, weight: .bold))
-            
     }
 }

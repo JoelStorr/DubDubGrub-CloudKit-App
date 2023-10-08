@@ -6,11 +6,11 @@
 //
 
 import UIKit
+
 enum RecordType{
     static let location = "DDGLocation"
     static let profile = "DDGProfile"
 }
-
 
 
 enum PlaceholderImage{
@@ -21,18 +21,14 @@ enum PlaceholderImage{
 
 
 enum ImageDimension {
-    
     case square, banner
     
     static func getPlaceholder(for dimension: ImageDimension) -> UIImage{
         switch dimension {
-            
         case .square:
             return PlaceholderImage.square
         case .banner:
             return PlaceholderImage.banner
         }
     }
-    
-    
 }

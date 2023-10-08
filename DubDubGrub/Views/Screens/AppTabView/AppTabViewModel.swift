@@ -12,15 +12,14 @@ final class AppTabViewModel: NSObject, ObservableObject{
     @Published var isShowingOnboardview = false
     @Published var alertItem: AlertItem?
     
-    
     var deviceLocationManager: CLLocationManager?
-    
     
     let kHasSeenTheOnboardView = "hasSeenOnboardView"
     var hasSeenOnboardView: Bool {
         //Retunrs false if nothing is thre
         return UserDefaults.standard.bool(forKey: kHasSeenTheOnboardView)
     }
+    
     
     func runStartUpChecks(){
         if !hasSeenOnboardView {
@@ -32,7 +31,6 @@ final class AppTabViewModel: NSObject, ObservableObject{
     }
     
     
-    
     func checkIfLocationServicesIsEnabled(){
         if CLLocationManager.locationServicesEnabled() {
             deviceLocationManager = CLLocationManager()
@@ -42,6 +40,7 @@ final class AppTabViewModel: NSObject, ObservableObject{
             alertItem = AlertContext.locationDisabled
         }
     }
+    
     
     //Cheking if the User allowed Location Services
     private func checkForLocationAutorization(){
@@ -61,7 +60,6 @@ final class AppTabViewModel: NSObject, ObservableObject{
             break
         }
     }
-    
 }
 
 extension AppTabViewModel: CLLocationManagerDelegate {

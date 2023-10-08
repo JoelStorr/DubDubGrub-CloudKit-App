@@ -49,6 +49,7 @@ struct LocationCell: View {
     }
 }
 
+
 #Preview {
     LocationCell(location: DDGLocation(record: MockData.location), profiles: [])
 }

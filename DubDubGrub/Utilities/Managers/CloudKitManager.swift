@@ -7,17 +7,11 @@
 
 import CloudKit
 
-
 final class CloudKitManager{
-    
-    
-    
     
     static let shared = CloudKitManager()
     
-    
     private init(){}
-    
     
     var userRecord: CKRecord?
     var profileRecordID: CKRecord.ID?
@@ -30,7 +24,6 @@ final class CloudKitManager{
                 print(error!.localizedDescription)
                 return
             }
-            
             //Get Userrecord from the Public Database
             CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
                 guard let userRecord = userRecord, error == nil else {
@@ -43,16 +36,14 @@ final class CloudKitManager{
                 if let profileReference = userRecord["userProfile"] as? CKRecord.Reference {
                     self.profileRecordID = profileReference.recordID
                 }
-                
             }
         }
     }
     
+    
     func getLocations(completed: @escaping (Result<[DDGLocation], Error>) -> Void) {
         //Sorts the Elements by Name in a decending order
         let alphabeticalSort = NSSortDescriptor(key: DDGLocation.kName, ascending: true)
-        
-        
         
         //Uses Convinience API
         //Query: return all DDGLocations
@@ -60,14 +51,13 @@ final class CloudKitManager{
         query.sortDescriptors = [alphabeticalSort]
         
         //Fetches data from the DB
-    CKContainer.default().publicCloudDatabase.fetch(withQuery: query, inZoneWith: nil) { result in
-                
+        CKContainer.default().publicCloudDatabase.fetch(withQuery: query, inZoneWith: nil) { result in
                 switch result {
                     case .failure(let error):
                         completed(.failure(error))
                         return
                 case .success((let matchResults, _)):
-                    
+        
                         var locations: [DDGLocation] = []
             
                         for matchResult in matchResults {
@@ -133,25 +123,19 @@ final class CloudKitManager{
     }
     
     
-    
     func getCheckedInProfilesDictionary(completed: @escaping(Result<[CKRecord.ID: [DDGProfile]], Error>)->Void){
         let predicate = NSPredicate(format: "isCheckedInNilCheck == 1")
-        
         let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
         let operation = CKQueryOperation(query: query)
         //We can also filter the keys we want to get back
         //operation.desiredKeys = [DDGProfile.kIsCheckedIn, DDGProfile.kAvatar]
         
-        
         var checkedInProfiles: [CKRecord.ID: [DDGProfile]] = [:]
         operation.recordFetchedBlock = { record in
-                // Building the dictionary
+            // Building the dictionary
             let profile = DDGProfile(record: record)
-            
             guard let locationReference = profile.isCheckedIn else { return }
-            
             checkedInProfiles[locationReference.recordID, default: []].append(profile)
-            
         }
         
         //Runs when all records are done
@@ -167,16 +151,14 @@ final class CloudKitManager{
         CKContainer.default().publicCloudDatabase.add(operation)
     }
     
+    
     //Get a dictionary of how many people are checked into a given lcation
     func getCheckedInProfilesCount(completed: @escaping(Result<[CKRecord.ID: Int], Error>)->Void){
         let predicate = NSPredicate(format: "isCheckedInNilCheck == 1")
-        
         let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
         let operation = CKQueryOperation(query: query)
         //We can also filter the keys we want to get back
         operation.desiredKeys = [DDGProfile.kIsCheckedIn]
-        
-        
         var checkedInProfiles: [CKRecord.ID: Int] = [:]
         operation.recordFetchedBlock = { record in
             // Building the dictionary
@@ -188,7 +170,6 @@ final class CloudKitManager{
                 checkedInProfiles[locationReference.recordID] = 1
             }
         }
-        
         //Runs when all records are done
         //The cursor holds the current position of the Query sinc cloudkit returns a limited Number of results
         operation.queryResultBlock = { result in
@@ -202,12 +183,8 @@ final class CloudKitManager{
         CKContainer.default().publicCloudDatabase.add(operation)
     }
     
-    
-    
-    
-    
+
     func batchSave(records: [CKRecord], completed: @escaping(Result<[CKRecord], Error>)->Void){
-        
         //Create a CKOpertation to save our User and Profile Records
         let operation = CKModifyRecordsOperation(recordsToSave: records)
         operation.modifyRecordsCompletionBlock = { savedRecords, _, error in
@@ -231,25 +208,18 @@ final class CloudKitManager{
             }
             
             completed(.success(record))
-            
         }
     }
     
-    
-    
-    
+
     func fetchRecord(with id: CKRecord.ID, completed: @escaping(Result<CKRecord, Error>)->Void){
         CKContainer.default().publicCloudDatabase.fetch(withRecordID: id) { record, error in
             guard let record = record, error == nil else {
                 completed(.failure(error!))
                 return
             }
-            
             completed(.success(record))
         }
     }
-    
-    
-    
 }
 

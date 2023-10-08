@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct ProfileNameStyle: ViewModifier{
     func body(content: Content) -> some View {
         content

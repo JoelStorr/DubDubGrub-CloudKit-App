@@ -115,6 +115,4 @@ struct AlertContext{
         message: Text("Unable to get the checked in users at this time. \nPlease try again."),
         dismissButton: .default(Text("OK"))
     )
-    
-    
 }

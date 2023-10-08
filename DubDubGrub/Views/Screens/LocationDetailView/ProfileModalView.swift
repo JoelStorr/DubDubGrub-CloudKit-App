@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ProfileModalView: View {
     
-    
     var profile: DDGProfile
     @Binding var isShowingProfileModal: Bool
     
@@ -46,7 +45,6 @@ struct ProfileModalView: View {
                     XDismissButton()
                 }, alignment: .topTrailing
             )
-            
             Image(uiImage: profile.createAvatarImage())
                 .resizable()
                 .scaledToFit()
@@ -57,6 +55,7 @@ struct ProfileModalView: View {
         }
     }
 }
+
 
 #Preview {
     ProfileModalView(profile: DDGProfile(record: MockData.profile), isShowingProfileModal: .constant(true))

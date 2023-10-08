@@ -11,11 +11,8 @@ import MapKit
 struct LocationMapView: View {
     
     @EnvironmentObject private var locationManager: LocationManager
-    
-   @StateObject private var viewModel = LocationMapViewModel()
-    
+    @StateObject private var viewModel = LocationMapViewModel()
     @State private var alertItem: AlertItem?
-    
     
     var body: some View {
         ZStack{
@@ -35,11 +32,9 @@ struct LocationMapView: View {
                             viewModel.isShowingDetailView = true
                         }
                 }
-                   
             }
-            .accentColor(.grubRed)
-            .ignoresSafeArea()
-            
+                .accentColor(.grubRed)
+                .ignoresSafeArea()
             VStack{
                 LogoView(frameWidth: 125)
                     .shadow(radius: 10)
@@ -65,17 +60,14 @@ struct LocationMapView: View {
             if locationManager.locations.isEmpty{
                 viewModel.getLocations(for: locationManager)
             }
-            
             viewModel.getCheckedInCount()
         }
     }
 }
+
 
 struct LocationMapView_Previews: PreviewProvider {
     static var previews: some View {
         LocationMapView()
     }
 }
-
-
-

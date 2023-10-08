@@ -11,9 +11,6 @@ import UIKit
 
 struct DDGLocation: Identifiable {
     
-    
-    
-    
     static let kName = "name"
     static let kDescription = "description"
     static let kSquareAsset = "squareAsset"

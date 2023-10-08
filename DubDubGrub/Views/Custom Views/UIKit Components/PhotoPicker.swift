@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-
 struct PhotoPicker: UIViewControllerRepresentable {
-    
     
     @Binding var image: UIImage
     @Environment(\.presentationMode) var presentationMode
@@ -22,18 +20,18 @@ struct PhotoPicker: UIViewControllerRepresentable {
         return picker
     }
     
+    
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+    
     
     func makeCoordinator() -> Coordinator {
         Coordinator(photoPicker: self)
     }
-    
-    
+        
     
     final class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
-        
         let photoPicker: PhotoPicker
-        
+
         init(photoPicker: PhotoPicker){
             self.photoPicker = photoPicker
         }
@@ -46,5 +44,4 @@ struct PhotoPicker: UIViewControllerRepresentable {
             photoPicker.presentationMode.wrappedValue.dismiss()
         }
     }
-    
 }

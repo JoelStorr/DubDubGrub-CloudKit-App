@@ -29,11 +29,9 @@ final class LocationDetailViewModel: ObservableObject {
     
     
     func getDirectionToLocation(){
-        
         let placeMark = MKPlacemark(coordinate: location.location.coordinate)
         let mapItem = MKMapItem(placemark: placeMark)
         mapItem.name = location.name
-        
         mapItem.openInMaps(launchOptions: [
             MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking
         ])
@@ -53,12 +51,11 @@ final class LocationDetailViewModel: ObservableObject {
         }
     }
     
+    
     func getCheckedInStatus(){
         guard let profileRcordID = CloudKitManager.shared.profileRecordID else { return }
         
-        
         CloudKitManager.shared.fetchRecord(with: profileRcordID) { result in
-            
             DispatchQueue.main.async {
                 switch result {
                 case .success(let record):
@@ -72,14 +69,12 @@ final class LocationDetailViewModel: ObservableObject {
                     self.alertItem = AlertContext.unableToGetCheckedInStatus
                 }
             }
-            
         }
     }
     
     
     func upadteCheckinStatus(to checkInStatus: checkInStatus){
         //Retrive the DDGProfile
-        
         guard let profileRcordID = CloudKitManager.shared.profileRecordID else {
             alertItem = AlertContext.unableToGetProfile
             return
@@ -147,10 +142,8 @@ final class LocationDetailViewModel: ObservableObject {
         }
     }
     
+    
     private func showLoadingView() { isLoading = true }
     private func hideLoadingView() { isLoading = false }
     
 }
-
-
-

@@ -58,18 +58,13 @@ struct LocationDetailView: View {
                                 )
                             }
                         }
-                        
                     }
-                    
                 }
-                
                 Text("Who's Here?")
                     .bold()
                     .font(.title2)
                 
-                
                 ZStack{
-                    
                     if viewModel.checkedInProfiles.isEmpty {
                         Text("Nobody's Here 😔")
                             .bold()
@@ -88,12 +83,10 @@ struct LocationDetailView: View {
                             }
                         }
                     }
-                    
                     if viewModel.isLoading { LoadingView() }
                 }
                 Spacer()
             }
-            
             if viewModel.isSHowingProfileModal {
                 Color(.systemBackground)
                     .ignoresSafeArea()
@@ -139,6 +132,7 @@ struct LocationDetailView_Previews: PreviewProvider {
     }
 }
 
+
 struct LocationActionButton: View {
     
     var color: Color
@@ -158,6 +152,7 @@ struct LocationActionButton: View {
     }
 }
 
+
 struct FirstNameAvtarView: View {
     
     var profile: DDGProfile
@@ -173,6 +168,7 @@ struct FirstNameAvtarView: View {
     }
 }
 
+
 struct BannerImageView: View {
     
     var image: UIImage
@@ -185,6 +181,7 @@ struct BannerImageView: View {
     }
 }
 
+
 struct AdrassView: View {
     
     var address: String
@@ -195,6 +192,7 @@ struct AdrassView: View {
             .foregroundColor(.secondary)
     }
 }
+
 
 struct DescriptionView: View {
     

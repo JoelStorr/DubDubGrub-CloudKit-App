@@ -8,7 +8,6 @@
 import MapKit
 import CloudKit
 
-
 final class LocationMapViewModel: ObservableObject {
     
     @Published var checkedInProfiles: [CKRecord.ID: Int] = [:]
@@ -26,6 +25,7 @@ final class LocationMapViewModel: ObservableObject {
         )
     )
     
+    
     func getLocations(for locationManager: LocationManager){
         CloudKitManager.shared.getLocations { [self] result in
             DispatchQueue.main.async{
@@ -36,10 +36,8 @@ final class LocationMapViewModel: ObservableObject {
                     self.alertItem = AlertContext.unableToGetLocations
                 }
             }
-            
         }
     }
-    
     
     
     func getCheckedInCount(){

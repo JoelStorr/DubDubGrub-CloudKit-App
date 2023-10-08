@@ -10,16 +10,11 @@ import CloudKit
 
 struct ProfileView: View {
     
-    
     @StateObject private var viewModel = ProfileViewModel()
-    
-    
     @State var charNumber: Int = 100
     @State var bioText: String = ""
     
-    
     var body: some View {
-        
         ZStack {
             VStack{
                 //SECTION: Top Card
@@ -64,7 +59,6 @@ struct ProfileView: View {
                     TextEditor(text: $viewModel.bio)
                         .frame(height: 100)
                         .overlay(RoundedRectangle(cornerRadius: 8).stroke( Color.secondary, lineWidth: 1))
-                    
                 }
                 .padding(.horizontal, 20)
                 
@@ -97,11 +91,8 @@ struct ProfileView: View {
         .sheet(isPresented: $viewModel.isShowingPhotoPicker){
             PhotoPicker(image: $viewModel.avatar)
         }
-        
     }
 }
-
-
 
 
 struct ProfileView_Previews: PreviewProvider {
@@ -136,7 +127,6 @@ struct EditImage: View {
 
 
 struct CharactersRemainView: View {
-    
     var currentCount: Int
     
     var body: some View {
