@@ -11,7 +11,7 @@ import MapKit
 
 final class LocationMapViewModel: ObservableObject {
     
-
+    @Published var isShowingDetailView = false
     @Published var alertItem: AlertItem?
     
     @Published var region = MKCoordinateRegion(
