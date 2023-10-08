@@ -43,6 +43,7 @@
 		40C701DF2AC08AFC004DE16F /* CKAsset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C701DE2AC08AFC004DE16F /* CKAsset+Ext.swift */; };
 		40E9328E2AD2E42400974125 /* MapBalloon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E9328D2AD2E42400974125 /* MapBalloon.swift */; };
 		40E932902AD2E84E00974125 /* DDGAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E9328F2AD2E84E00974125 /* DDGAnnotation.swift */; };
+		40E932932AD2F0C700974125 /* AppTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E932922AD2F0C700974125 /* AppTabViewModel.swift */; };
 		40F693B72AD041BE00DE68D7 /* LocationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F693B62AD041BE00DE68D7 /* LocationListViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,7 @@
 		40C701DE2AC08AFC004DE16F /* CKAsset+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKAsset+Ext.swift"; sourceTree = "<group>"; };
 		40E9328D2AD2E42400974125 /* MapBalloon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBalloon.swift; sourceTree = "<group>"; };
 		40E9328F2AD2E84E00974125 /* DDGAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGAnnotation.swift; sourceTree = "<group>"; };
+		40E932922AD2F0C700974125 /* AppTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabViewModel.swift; sourceTree = "<group>"; };
 		40F693B62AD041BE00DE68D7 /* LocationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,11 +136,11 @@
 		4033E28A2ABA2A21004E51F4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				40E932912AD2F09400974125 /* AppTabView */,
 				40F693B52AD0413600DE68D7 /* LocationListView */,
 				4091EC842AC6BCE400FB0911 /* LocationDetailView */,
 				404CE5212AC45FD100A584DF /* ProfileView */,
 				4025F4812ABF197D0096453B /* LocationMapView */,
-				40BE27E92AB65616004F93D9 /* AppTabView.swift */,
 				406561A42AC17BE300A193BA /* OnboardView.swift */,
 			);
 			path = Screens;
@@ -270,6 +272,15 @@
 			path = "Map Anotation";
 			sourceTree = "<group>";
 		};
+		40E932912AD2F09400974125 /* AppTabView */ = {
+			isa = PBXGroup;
+			children = (
+				40E932922AD2F0C700974125 /* AppTabViewModel.swift */,
+				40BE27E92AB65616004F93D9 /* AppTabView.swift */,
+			);
+			path = AppTabView;
+			sourceTree = "<group>";
+		};
 		40F693B52AD0413600DE68D7 /* LocationListView */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E932932AD2F0C700974125 /* AppTabViewModel.swift in Sources */,
 				40733D0E2AB72FD600340EED /* View+Ext.swift in Sources */,
 				406561AA2AC1826700A193BA /* XDismissButton.swift in Sources */,
 				404CE5232AC4600200A584DF /* ProfileViewModel.swift in Sources */,

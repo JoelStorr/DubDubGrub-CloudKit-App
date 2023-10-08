@@ -22,7 +22,15 @@ struct LocationMapView: View {
             Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: locationManager.locations) { location in
                 //Simple Map pin
                 //MapPin(coordinate: $0.location.coordinate)
-                MapMarker( coordinate: location.location.coordinate, tint: .brandPrimary)
+                MapAnnotation(
+                    coordinate: location.location.coordinate,
+                    anchorPoint: CGPoint(x: 0.5, y: 0.75)
+                ) {
+                    DDGAnnotation(location: location)
+                        .onTapGesture {
+                            locationManager.selectedLocation = location
+                        }
+                }
                    
             }
             .accentColor(.grubRed)
@@ -34,24 +42,17 @@ struct LocationMapView: View {
                 Spacer()
             }
         }
-        .sheet(isPresented: $viewModel.isShowingOnboardview, onDismiss: viewModel.checkIfLocationServicesIsEnabled) {
-            OnboardView(isShowingOnboardView: $viewModel.isShowingOnboardview)
-        }
+//        .sheet(isPresented: $viewModel.isShowingOnboardview, onDismiss: viewModel.checkIfLocationServicesIsEnabled) {
+//            OnboardView(isShowingOnboardView: $viewModel.isShowingOnboardview)
+//        }
         .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
         })
         .onAppear(){
-            
-            viewModel.runStartUpChecks()
-            
             //Prevents us from loading the Locations each time we go to the view
-            
             if locationManager.locations.isEmpty{
                 viewModel.getLocations(for: locationManager)
             }
-            
-            
-            
         }
     }
 }
