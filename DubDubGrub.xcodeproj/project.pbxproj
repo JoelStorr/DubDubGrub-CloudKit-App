@@ -235,13 +235,13 @@
 		40BE27D72AB63F0B004F93D9 /* DubDubGrub */ = {
 			isa = PBXGroup;
 			children = (
-				40003E822AD43E8E00C1E0FB /* Info.plist */,
 				40399A6A2ABC55BE0076F30B /* Utilities */,
 				40C417C92ABB254C006A2CEE /* Model */,
 				4033E2892ABA2A12004E51F4 /* Views */,
 				40BE27E62AB6463A004F93D9 /* DubDubGrub.entitlements */,
 				40BE27D82AB63F0B004F93D9 /* DubDubGrubApp.swift */,
 				40BE27DC2AB63F0D004F93D9 /* Assets.xcassets */,
+				40003E822AD43E8E00C1E0FB /* Info.plist */,
 				40BE27DE2AB63F0D004F93D9 /* Preview Content */,
 			);
 			path = DubDubGrub;
