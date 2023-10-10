@@ -27,6 +27,7 @@ struct LocationMapView: View {
                         location: location,
                         number: viewModel.checkedInProfiles[location.id, default : 0]
                     )
+                        .accessibilityLabel(Text("\(location.name) \(viewModel.checkedInProfiles[location.id, default : 0]) people checked in."))
                         .onTapGesture {
                             locationManager.selectedLocation = location
                             viewModel.isShowingDetailView = true
@@ -38,6 +39,7 @@ struct LocationMapView: View {
             VStack{
                 LogoView(frameWidth: 125)
                     .shadow(radius: 10)
+                    .accessibilityHidden(true)
                 Spacer()
             }
         }
