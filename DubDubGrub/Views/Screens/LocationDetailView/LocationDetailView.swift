@@ -18,6 +18,7 @@ struct LocationDetailView: View {
         ZStack {
             VStack(spacing: 16){
                 BannerImageView(image: viewModel.location.createBannerImage())
+                    
                 
                 HStack{
                     AdrassView(address: viewModel.location.address)
@@ -35,17 +36,20 @@ struct LocationDetailView: View {
                             viewModel.getDirectionToLocation()
                         }label: {
                             LocationActionButton(color: .brandPrimary, imageName: "location.fill")
+                                .accessibilityLabel(Text("Get directions"))
                         }
                         
                         Link(destination: URL(string: viewModel.location.websiteURL)!) {
                             
                             LocationActionButton(color: .brandPrimary, imageName: "network")
+                                .accessibilityLabel(Text("Go to website"))
                         }
                         
                         Button{
                             viewModel.callLocation()
                         }label: {
                             LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
+                                .accessibilityLabel(Text("Call location"))
                         }
                         
                         if let _ = CloudKitManager.shared.profileRecordID {
@@ -57,6 +61,7 @@ struct LocationDetailView: View {
                                     color: viewModel.isCheckedIn ? .grubRed : .brandPrimary,
                                     imageName: viewModel.isCheckedIn ? "person.fill.xmark" :  "person.fill.checkmark"
                                 )
+                                .accessibilityLabel(Text(viewModel.isCheckedIn ? "Check out of location" :  "Check in to location"))
                             }
                         }
                     }
@@ -64,6 +69,9 @@ struct LocationDetailView: View {
                 Text("Who's Here?")
                     .bold()
                     .font(.title2)
+                    .accessibility(addTraits: .isHeader)
+                    .accessibilityLabel("Who's Here? \(viewModel.checkedInProfiles.count) checked in")
+                    .accessibilityHint(Text("Bottom section is scrollable"))
                 
                 ZStack{
                     if viewModel.checkedInProfiles.isEmpty {
@@ -72,14 +80,17 @@ struct LocationDetailView: View {
                             .font(.title2)
                             .foregroundColor(Color.secondary)
                             .padding(.top, 30)
+                            
                     }else{
                         ScrollView{
                             LazyVGrid(columns: viewModel.columns) {
                                 ForEach(viewModel.checkedInProfiles){ profile in
                                     FirstNameAvtarView(profile: profile)
-                                }
-                                .onTapGesture {
-                                    viewModel.isSHowingProfileModal = true
+                                        .accessibilityElement(children: .ignore)
+                                        .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
+                                        .onTapGesture {
+                                            viewModel.isSHowingProfileModal = true
+                                        }
                                 }
                             }
                         }
@@ -179,6 +190,7 @@ struct BannerImageView: View {
             .resizable()
             .scaledToFill()
             .frame(height: 120)
+            .accessibilityHidden(true)
     }
 }
 
