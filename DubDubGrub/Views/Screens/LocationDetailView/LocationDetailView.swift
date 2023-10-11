@@ -89,7 +89,7 @@ struct LocationDetailView: View {
                                         .accessibilityElement(children: .ignore)
                                         .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
                                         .onTapGesture {
-                                            viewModel.isSHowingProfileModal = true
+                                            viewModel.selectedProfile = profile
                                         }
                                 }
                             }
@@ -109,7 +109,7 @@ struct LocationDetailView: View {
                     .zIndex(1)
                 
                 ProfileModalView(
-                    profile: DDGProfile(record: MockData.profile),
+                    profile: viewModel.selectedProfile!,
                     isShowingProfileModal: $viewModel.isSHowingProfileModal
                 )
                 .transition(.opacity.combined(with: .slide))
