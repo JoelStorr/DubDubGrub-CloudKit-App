@@ -88,6 +88,8 @@ struct LocationDetailView: View {
                                 ForEach(viewModel.checkedInProfiles){ profile in
                                     FirstNameAvtarView(profile: profile)
                                         .accessibilityElement(children: .ignore)
+                                        .accessibilityAddTraits(.isButton)
+                                        .accessibilityHint(Text("Show's \(profile.firstName) profile pop up."))
                                         .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
                                         .onTapGesture {
                                             viewModel.selectedProfile = profile
