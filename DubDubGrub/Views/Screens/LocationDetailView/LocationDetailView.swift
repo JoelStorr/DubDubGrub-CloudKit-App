@@ -36,21 +36,22 @@ struct LocationDetailView: View {
                             viewModel.getDirectionToLocation()
                         }label: {
                             LocationActionButton(color: .brandPrimary, imageName: "location.fill")
-                                .accessibilityLabel(Text("Get directions"))
                         }
+                        .accessibilityLabel(Text("Get directions"))
                         
                         Link(destination: URL(string: viewModel.location.websiteURL)!) {
                             
                             LocationActionButton(color: .brandPrimary, imageName: "network")
-                                .accessibilityLabel(Text("Go to website"))
                         }
+                        .accessibilityRemoveTraits(.isButton)
+                        .accessibilityLabel(Text("Go to website"))
                         
                         Button{
                             viewModel.callLocation()
                         }label: {
                             LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
-                                .accessibilityLabel(Text("Call location"))
                         }
+                        .accessibilityLabel(Text("Call location"))
                         
                         if let _ = CloudKitManager.shared.profileRecordID {
                             Button{
@@ -69,7 +70,7 @@ struct LocationDetailView: View {
                 Text("Who's Here?")
                     .bold()
                     .font(.title2)
-                    .accessibility(addTraits: .isHeader)
+                    .accessibilityAddTraits(.isHeader)
                     .accessibilityLabel("Who's Here? \(viewModel.checkedInProfiles.count) checked in")
                     .accessibilityHint(Text("Bottom section is scrollable"))
                 
