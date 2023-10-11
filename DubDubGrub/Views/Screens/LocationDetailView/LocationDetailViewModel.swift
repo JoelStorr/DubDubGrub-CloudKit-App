@@ -16,14 +16,14 @@ final class LocationDetailViewModel: ObservableObject {
     
     @Published var checkedInProfiles: [DDGProfile] = []
     @Published var isLoading = false
-    @Published var isSHowingProfileModal: Bool = false
+    @Published var isShowingProfileModal: Bool = false
     @Published var isCheckedIn = false
     @Published var alertItem: AlertItem?
     
     var location : DDGLocation
     var selectedProfile : DDGProfile?{
         didSet{
-            isSHowingProfileModal = true
+            isShowingProfileModal = true
         }
     }
     

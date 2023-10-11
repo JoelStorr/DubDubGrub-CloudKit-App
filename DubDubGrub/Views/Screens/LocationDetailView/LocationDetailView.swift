@@ -102,7 +102,8 @@ struct LocationDetailView: View {
                 }
                 Spacer()
             }
-            if viewModel.isSHowingProfileModal {
+            .accessibilityHidden(viewModel.isShowingProfileModal)
+            if viewModel.isShowingProfileModal {
                 Color(.systemBackground)
                     .ignoresSafeArea()
                     .opacity(0.9)
@@ -110,16 +111,20 @@ struct LocationDetailView: View {
                     .transition(AnyTransition.opacity.animation(.easeOut(duration: 0.35)))
                     //.animation(.easeOut)
                     .zIndex(1)
+                    .accessibilityHidden(true)
                 
                 ProfileModalView(
                     profile: viewModel.selectedProfile!,
-                    isShowingProfileModal: $viewModel.isSHowingProfileModal
+                    isShowingProfileModal: $viewModel.isShowingProfileModal
                 )
+                //Does not work
+                //.accessibilityAddTraits(.isModal)
                 .transition(.opacity.combined(with: .slide))
                 .animation(.easeOut)
                 .zIndex(2)
             }
         }
+        
         .onAppear{
             viewModel.getCheckedInProfiles()
             viewModel.getCheckedInStatus()
