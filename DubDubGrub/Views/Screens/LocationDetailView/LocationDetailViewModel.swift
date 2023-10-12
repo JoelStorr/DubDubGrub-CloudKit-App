@@ -17,15 +17,12 @@ final class LocationDetailViewModel: ObservableObject {
     @Published var checkedInProfiles: [DDGProfile] = []
     @Published var isLoading = false
     @Published var isShowingProfileModal: Bool = false
+    @Published var isShowingProfileSheet: Bool = false
     @Published var isCheckedIn = false
     @Published var alertItem: AlertItem?
     
     var location : DDGLocation
-    var selectedProfile : DDGProfile?{
-        didSet{
-            isShowingProfileModal = true
-        }
-    }
+    var selectedProfile : DDGProfile?
     
     
     init(location: DDGLocation){
@@ -150,6 +147,16 @@ final class LocationDetailViewModel: ObservableObject {
                 }
                 self.hideLoadingView()
             }
+        }
+    }
+    
+    
+    func show(profile: DDGProfile, in sizeCategory: ContentSizeCategory) {
+        selectedProfile = profile
+        if sizeCategory >= .accessibilityMedium {
+           isShowingProfileSheet = true
+        }else {
+            isShowingProfileModal = true
         }
     }
     
