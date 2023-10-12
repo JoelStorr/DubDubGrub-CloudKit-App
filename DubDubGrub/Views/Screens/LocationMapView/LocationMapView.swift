@@ -17,7 +17,8 @@ struct LocationMapView: View {
     @Environment(\.sizeCategory) var sizeCategory
     
     var body: some View {
-        ZStack{
+        ZStack(alignment: .top){
+            
             Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: locationManager.locations) { location in
                 //Simple Map pin
                 //MapPin(coordinate: $0.location.coordinate)
@@ -29,21 +30,21 @@ struct LocationMapView: View {
                         location: location,
                         number: viewModel.checkedInProfiles[location.id, default : 0]
                     )
-                        .accessibilityLabel(Text("\(location.name) \(viewModel.checkedInProfiles[location.id, default : 0]) people checked in."))
-                        .onTapGesture {
-                            locationManager.selectedLocation = location
-                            viewModel.isShowingDetailView = true
-                        }
+                    .onTapGesture {
+                        locationManager.selectedLocation = location
+                        viewModel.isShowingDetailView = true
+                    }
                 }
             }
-                .accentColor(.grubRed)
-                .ignoresSafeArea()
-            VStack{
-                LogoView(frameWidth: 125)
-                    .shadow(radius: 10)
-                    .accessibilityHidden(true)
-                Spacer()
-            }
+            .accentColor(.grubRed)
+            .ignoresSafeArea()
+            
+            
+            LogoView(frameWidth: 125)
+                .shadow(radius: 10)
+                .accessibilityHidden(true)
+            
+            
         }
         .sheet(isPresented: $viewModel.isShowingDetailView) {
             NavigationView{
@@ -70,6 +71,6 @@ struct LocationMapView: View {
 
 struct LocationMapView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationMapView()
+        LocationMapView().environmentObject(LocationManager())
     }
 }

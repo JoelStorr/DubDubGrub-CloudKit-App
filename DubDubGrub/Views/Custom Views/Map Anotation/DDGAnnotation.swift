@@ -37,6 +37,7 @@ struct DDGAnnotation: View {
                 .font(.caption)
                 .fontWeight(.semibold)
         }
+        .accessibilityLabel(Text("\(location.name) \(number) checked in."))
     }
 }
 
