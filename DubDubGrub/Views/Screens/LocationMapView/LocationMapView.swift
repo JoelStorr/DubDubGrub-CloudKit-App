@@ -56,9 +56,7 @@ struct LocationMapView: View {
             }
             .accentColor(.brandPrimary)
         }
-        .alert(item: $viewModel.alertItem, content: { alertItem in
-            Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
-        })
+        .alert(item: $viewModel.alertItem, content: { $0.alert })
         .onAppear(){
             //Prevents us from loading the Locations each time we go to the view
             if locationManager.locations.isEmpty{

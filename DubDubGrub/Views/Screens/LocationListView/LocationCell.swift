@@ -55,10 +55,9 @@ struct LocationCell: View {
 }
 
 
-struct AdditionalProfilesView: View {
+fileprivate struct AdditionalProfilesView: View {
     
     var number: Int
-    
     
     var body: some View {
         Text("+\(number)")
