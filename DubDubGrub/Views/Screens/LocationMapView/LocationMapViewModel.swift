@@ -7,12 +7,14 @@
 
 import MapKit
 import CloudKit
+import SwiftUI
 
 final class LocationMapViewModel: ObservableObject {
     
     @Published var checkedInProfiles: [CKRecord.ID: Int] = [:]
     @Published var isShowingDetailView = false
     @Published var alertItem: AlertItem?
+    
     
     @Published var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
@@ -53,4 +55,14 @@ final class LocationMapViewModel: ObservableObject {
             }
         }
     }
+    
+    
+    @ViewBuilder func createLocationDetailView(for location: DDGLocation, in sizeCategory: ContentSizeCategory) -> some View {
+        if sizeCategory >= .accessibilityMedium {
+            LocationDetailView(viewModel: LocationDetailViewModel(location: location)).embedInScrollView()
+        } else {
+            LocationDetailView(viewModel: LocationDetailViewModel(location: location))
+        }
+    }
+    
 }

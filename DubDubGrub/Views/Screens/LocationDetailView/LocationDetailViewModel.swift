@@ -12,7 +12,7 @@ import CloudKit
 enum checkInStatus { case checkedIn, checkedOut}
 
 final class LocationDetailViewModel: ObservableObject {
-    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+   
     
     @Published var checkedInProfiles: [DDGProfile] = []
     @Published var isLoading = false
@@ -30,6 +30,12 @@ final class LocationDetailViewModel: ObservableObject {
     
     init(location: DDGLocation){
         self.location = location
+    }
+    
+    
+    func determinColumns(for sizeCategory: ContentSizeCategory) -> [GridItem]{
+        let numberOfColumns = sizeCategory >= .accessibilityMedium ? 1 : 3
+        return Array(repeating: GridItem(.flexible()), count: numberOfColumns)
     }
     
     

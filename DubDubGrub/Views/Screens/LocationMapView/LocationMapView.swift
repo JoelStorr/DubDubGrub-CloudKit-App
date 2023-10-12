@@ -14,6 +14,8 @@ struct LocationMapView: View {
     @StateObject private var viewModel = LocationMapViewModel()
     @State private var alertItem: AlertItem?
     
+    @Environment(\.sizeCategory) var sizeCategory
+    
     var body: some View {
         ZStack{
             Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: locationManager.locations) { location in
@@ -45,7 +47,7 @@ struct LocationMapView: View {
         }
         .sheet(isPresented: $viewModel.isShowingDetailView) {
             NavigationView{
-                LocationDetailView(viewModel: LocationDetailViewModel(location: locationManager.selectedLocation!))
+                viewModel.createLocationDetailView(for: locationManager.selectedLocation!, in: sizeCategory)
                     .toolbar{
                         Button("Dismiss"){
                             viewModel.isShowingDetailView = false
