@@ -133,8 +133,14 @@ struct LocationDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $viewModel.isShowingProfileSheet){
             NavigationView{
-                ProfileSheetView(profile: viewModel.selectedProfile!)                
+                ProfileSheetView(profile: viewModel.selectedProfile!)
+                    .toolbar{
+                        Button("Dismiss"){
+                            viewModel.isShowingProfileSheet = false
+                        }
+                    }
             }
+            .accentColor(.brandPrimary)
         }
         .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
