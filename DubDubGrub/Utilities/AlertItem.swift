@@ -42,6 +42,11 @@ struct AlertContext{
         message: Text("Your phones location services are disabled. To chnage that goe to your device Settings > Privacy > Location Services"),
         dismissButton: .default(Text("OK"))
     )
+    static let checkedInCount = AlertItem(
+        title: Text("Server Error"),
+        message: Text("Unable to get the number of people checked in to each location. Pleas check you internet connection and try again."),
+        dismissButton: .default(Text("OK"))
+    )
     
     
     //MARK: ProfileView Errors

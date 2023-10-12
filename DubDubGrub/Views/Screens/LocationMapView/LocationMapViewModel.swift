@@ -52,7 +52,7 @@ extension LocationMapView{
                     case .success(let checkedInProfiles):
                         self.checkedInProfiles = checkedInProfiles
                     case .failure(_):
-                        //Show alert
+                        self.alertItem = AlertContext.checkedInCount
                         break
                     }
                 }
