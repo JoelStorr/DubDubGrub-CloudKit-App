@@ -100,7 +100,6 @@ struct LocationDetailView: View {
                     }
                     if viewModel.isLoading { LoadingView() }
                 }
-                Spacer()
             }
             .accessibilityHidden(viewModel.isShowingProfileModal)
             if viewModel.isShowingProfileModal {
