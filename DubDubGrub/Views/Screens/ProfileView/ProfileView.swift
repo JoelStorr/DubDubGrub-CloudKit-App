@@ -30,7 +30,7 @@ struct ProfileView: View {
                     .padding(.trailing, 16)
                 }
                 .padding(.vertical)
-                .background(Color.blue)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(12)
                 .padding(.horizontal)
                 
@@ -48,6 +48,7 @@ struct ProfileView: View {
                             } label: {
                                 CheckOutButton()
                             }
+                            .disabled(viewModel.isLoading)
                         }
                     }
                     BioTextEditor(text: $viewModel.bio)
