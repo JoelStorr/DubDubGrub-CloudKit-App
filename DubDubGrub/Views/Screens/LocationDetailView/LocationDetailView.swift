@@ -18,19 +18,9 @@ struct LocationDetailView: View {
         ZStack {
             VStack(spacing: 16){
                 BannerImageView(image: viewModel.location.bannerImage)
-                    
-                
-                HStack{
-                    AdrassView(address: viewModel.location.address)
-                    Spacer()
-                }
-                .padding(.horizontal)
+                AdressHStack(address: viewModel.location.address)
                 DescriptionView(text: viewModel.location.description)
                 
-                ZStack{
-                    Capsule()
-                        .frame(height: 80)
-                        .foregroundColor(Color(.secondarySystemBackground))
                     HStack(spacing: 20){
                         Button{
                             viewModel.getDirectionToLocation()
@@ -58,42 +48,30 @@ struct LocationDetailView: View {
                                 viewModel.upadteCheckinStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
                             }label: {
                                 LocationActionButton(
-                                    color: viewModel.isCheckedIn ? .grubRed : .brandPrimary,
-                                    imageName: viewModel.isCheckedIn ? "person.fill.xmark" :  "person.fill.checkmark"
+                                    color: viewModel.buttonColor,
+                                    imageName: viewModel.buttonImageTitle
                                 )
-                                .accessibilityLabel(Text(viewModel.isCheckedIn ? "Check out of location" :  "Check in to location"))
+                                .accessibilityLabel(Text(viewModel.buttonA11yLabel))
                             }
                             .disabled(viewModel.isLoading)
                         }
                     }
-                }
-                Text("Who's Here?")
-                    .bold()
-                    .font(.title2)
-                    .accessibilityAddTraits(.isHeader)
-                    .accessibilityLabel("Who's Here? \(viewModel.checkedInProfiles.count) checked in")
-                    .accessibilityHint(Text("Bottom section is scrollable"))
+                    .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                    .background(Color(.secondarySystemBackground))
+                    .clipShape(Capsule())
+                
+                GridHeaderTextView(number: viewModel.checkedInProfiles.count)
                 
                 ZStack{
                     if viewModel.checkedInProfiles.isEmpty {
-                        Text("Nobody's Here 😔")
-                            .bold()
-                            .font(.title2)
-                            .foregroundColor(Color.secondary)
-                            .padding(.top, 30)
+                        GridEmptyStateTextView()
                             
                     }else{
                         ScrollView{
                             LazyVGrid(columns: viewModel.determinColumns(for: sizeCategory)) {
                                 ForEach(viewModel.checkedInProfiles){ profile in
                                     FirstNameAvtarView(profile: profile)
-                                        .accessibilityElement(children: .ignore)
-                                        .accessibilityAddTraits(.isButton)
-                                        .accessibilityHint(Text("Show's \(profile.firstName) profile pop up."))
-                                        .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
-                                        .onTapGesture {
-                                            viewModel.show(profile, in: sizeCategory)
-                                        }
+                                        .onTapGesture { viewModel.show(profile, in: sizeCategory)}
                                 }
                             }
                         }
@@ -103,24 +81,13 @@ struct LocationDetailView: View {
             }
             .accessibilityHidden(viewModel.isShowingProfileModal)
             if viewModel.isShowingProfileModal {
-                Color(.black)
-                    .ignoresSafeArea()
-                    .opacity(0.9)
-                    //.transition(.opacity)
-                    .transition(AnyTransition.opacity.animation(.easeOut(duration: 0.35)))
-                    //.animation(.easeOut)
-                    .zIndex(1)
-                    .accessibilityHidden(true)
+                FullScreenBlackTransparencyView()
                 
                 ProfileModalView(
                     profile: viewModel.selectedProfile!,
                     isShowingProfileModal: $viewModel.isShowingProfileModal
                 )
-                //Does not work
-                //.accessibilityAddTraits(.isModal)
-                .transition(.opacity.combined(with: .slide))
-                .animation(.easeOut)
-                .zIndex(2)
+                
             }
         }
         
@@ -196,6 +163,10 @@ fileprivate struct FirstNameAvtarView: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityHint(Text("Show's \(profile.firstName) profile pop up."))
+        .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
     }
 }
 
@@ -214,14 +185,18 @@ fileprivate struct BannerImageView: View {
 }
 
 
-fileprivate struct AdrassView: View {
+fileprivate struct AdressHStack: View {
     
     var address: String
     
     var body: some View {
-        Label(address, systemImage: "mappin.and.ellipse")
-            .font(.caption)
-            .foregroundColor(.secondary)
+        HStack{
+            Label(address, systemImage: "mappin.and.ellipse")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            Spacer()
+        }
+        .padding(.horizontal)
     }
 }
 
@@ -234,5 +209,45 @@ fileprivate struct DescriptionView: View {
             .minimumScaleFactor(0.75)
             .fixedSize(horizontal: false, vertical: true)
             .padding(.horizontal)
+    }
+}
+
+fileprivate struct GridHeaderTextView: View {
+    
+    var number: Int
+    
+    var body: some View {
+        Text("Who's Here?")
+            .bold()
+            .font(.title2)
+            .accessibilityAddTraits(.isHeader)
+            .accessibilityLabel("Who's Here? \(number) checked in")
+            .accessibilityHint(Text("Bottom section is scrollable"))
+    }
+}
+
+
+fileprivate struct GridEmptyStateTextView: View {
+    
+    var body: some View {
+        Text("Nobody's Here 😔")
+            .bold()
+            .font(.title2)
+            .foregroundColor(Color.secondary)
+            .padding(.top, 30)
+    }
+}
+
+fileprivate struct FullScreenBlackTransparencyView: View {
+    
+    var body: some View {
+        Color(.black)
+            .ignoresSafeArea()
+            .opacity(0.9)
+            .transition(AnyTransition.opacity.animation(.easeOut(duration: 0.35)))
+            //.transition(.opacity)
+            //.animation(.easeOut)
+            .zIndex(1)
+            .accessibilityHidden(true)
     }
 }

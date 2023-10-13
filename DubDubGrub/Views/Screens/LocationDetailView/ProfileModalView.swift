@@ -58,6 +58,11 @@ struct ProfileModalView: View {
                 .offset(y: -120)
                 .accessibilityHidden(true)
         }
+        //Does not work
+        //.accessibilityAddTraits(.isModal)
+        .transition(.opacity.combined(with: .slide))
+        .animation(.easeOut)
+        .zIndex(2)
     }
 }
 
