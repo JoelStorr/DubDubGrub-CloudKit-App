@@ -55,7 +55,6 @@ struct LocationDetailView: View {
                         
                         if let _ = CloudKitManager.shared.profileRecordID {
                             Button{
-                                playHaptic()
                                 viewModel.upadteCheckinStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
                             }label: {
                                 LocationActionButton(
@@ -64,6 +63,7 @@ struct LocationDetailView: View {
                                 )
                                 .accessibilityLabel(Text(viewModel.isCheckedIn ? "Check out of location" :  "Check in to location"))
                             }
+                            .disabled(viewModel.isLoading)
                         }
                     }
                 }
@@ -92,7 +92,7 @@ struct LocationDetailView: View {
                                         .accessibilityHint(Text("Show's \(profile.firstName) profile pop up."))
                                         .accessibilityLabel(Text("\(profile.firstName) \(profile.lastName)"))
                                         .onTapGesture {
-                                            viewModel.show(profile: profile, in: sizeCategory)
+                                            viewModel.show(profile, in: sizeCategory)
                                         }
                                 }
                             }
@@ -142,9 +142,7 @@ struct LocationDetailView: View {
             }
             .accentColor(.brandPrimary)
         }
-        .alert(item: $viewModel.alertItem, content: { alertItem in
-            Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
-        })
+        .alert(item: $viewModel.alertItem, content: {$0.alert})
     }
 }
 
@@ -153,7 +151,7 @@ struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             LocationDetailView(
-                viewModel: LocationDetailViewModel(
+                viewModel: LocationDetailView.LocationDetailViewModel(
                     location: DDGLocation(record: MockData.chipotle)
                 )
             ).embedInScrollView()
@@ -162,7 +160,7 @@ struct LocationDetailView_Previews: PreviewProvider {
 }
 
 
-struct LocationActionButton: View {
+fileprivate struct LocationActionButton: View {
     
     var color: Color
     var imageName: String
@@ -182,7 +180,7 @@ struct LocationActionButton: View {
 }
 
 
-struct FirstNameAvtarView: View {
+fileprivate struct FirstNameAvtarView: View {
     
     var profile: DDGProfile
     @Environment(\.sizeCategory) var sizeCategory
@@ -203,7 +201,7 @@ struct FirstNameAvtarView: View {
 }
 
 
-struct BannerImageView: View {
+fileprivate struct BannerImageView: View {
     
     var image: UIImage
     
@@ -217,7 +215,7 @@ struct BannerImageView: View {
 }
 
 
-struct AdrassView: View {
+fileprivate struct AdrassView: View {
     
     var address: String
     
@@ -229,7 +227,7 @@ struct AdrassView: View {
 }
 
 
-struct DescriptionView: View {
+fileprivate struct DescriptionView: View {
     
     var text: String
     var body: some View {

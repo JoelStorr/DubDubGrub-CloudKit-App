@@ -29,6 +29,7 @@
 		4091EC862AC6BD2700FB0911 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4091EC852AC6BD2700FB0911 /* LocationDetailViewModel.swift */; };
 		4091EC882AC6CDA700FB0911 /* ProfileModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4091EC872AC6CDA700FB0911 /* ProfileModalView.swift */; };
 		409DF05E2AC03C48002E7C47 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409DF05D2AC03C48002E7C47 /* LocationManager.swift */; };
+		409E76992AD95BFF00E71E83 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409E76982AD95BFF00E71E83 /* HapticManager.swift */; };
 		40A13F602AC5BFFB0086848A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A13F5F2AC5BFFB0086848A /* LoadingView.swift */; };
 		40BE27D92AB63F0B004F93D9 /* DubDubGrubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BE27D82AB63F0B004F93D9 /* DubDubGrubApp.swift */; };
 		40BE27DD2AB63F0D004F93D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40BE27DC2AB63F0D004F93D9 /* Assets.xcassets */; };
@@ -72,6 +73,7 @@
 		4091EC852AC6BD2700FB0911 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
 		4091EC872AC6CDA700FB0911 /* ProfileModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalView.swift; sourceTree = "<group>"; };
 		409DF05D2AC03C48002E7C47 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		409E76982AD95BFF00E71E83 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		40A13F5F2AC5BFFB0086848A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		40BE27D52AB63F0B004F93D9 /* DubDubGrub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DubDubGrub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40BE27D82AB63F0B004F93D9 /* DubDubGrubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DubDubGrubApp.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			children = (
 				40399A6B2ABC57560076F30B /* CloudKitManager.swift */,
 				409DF05D2AC03C48002E7C47 /* LocationManager.swift */,
+				409E76982AD95BFF00E71E83 /* HapticManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				404CE5232AC4600200A584DF /* ProfileViewModel.swift in Sources */,
 				40BE27D92AB63F0B004F93D9 /* DubDubGrubApp.swift in Sources */,
 				405E71C32AB7964500DF6D25 /* LocationDetailView.swift in Sources */,
+				409E76992AD95BFF00E71E83 /* HapticManager.swift in Sources */,
 				40C417CD2ABB726F006A2CEE /* DDGProfile.swift in Sources */,
 				406561A52AC17BE300A193BA /* OnboardView.swift in Sources */,
 				40399A6C2ABC57560076F30B /* CloudKitManager.swift in Sources */,

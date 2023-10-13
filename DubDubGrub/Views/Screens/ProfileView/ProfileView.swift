@@ -49,7 +49,7 @@ struct ProfileView: View {
                         Spacer()
                         if viewModel.isCheckedIn {
                             Button{
-                                playHaptic()
+                                HapticManager.playSuccess()
                                 viewModel.checkout()
                             } label: {
                                 Label("Check Out", systemImage: "mappin.and.ellipse")
