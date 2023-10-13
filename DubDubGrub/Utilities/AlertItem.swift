@@ -48,6 +48,13 @@ struct AlertContext{
         dismissButton: .default(Text("OK"))
     )
     
+    //MARK: Location List View
+    static let unableToGetAllCheckedInProfiles = AlertItem(
+        title: Text("Server Error"),
+        message: Text("Unable to get the checked in users at this time. \nPlease try again."),
+        dismissButton: .default(Text("OK"))
+    )
+    
     
     //MARK: ProfileView Errors
     static let invalidProfile = AlertItem(
@@ -113,4 +120,6 @@ struct AlertContext{
         message: Text("Unable to get the checked in users at this time. \nPlease try again."),
         dismissButton: .default(Text("OK"))
     )
+    
+   
 }
