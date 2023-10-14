@@ -32,7 +32,7 @@ final class CloudKitManager{
                 }
                 self.userRecord = userRecord
                 
-                //If we have a user Profile set the reference id 
+                //If we have a user Profile set the reference id
                 if let profileReference = userRecord["userProfile"] as? CKRecord.Reference {
                     self.profileRecordID = profileReference.recordID
                 }
@@ -52,28 +52,28 @@ final class CloudKitManager{
         
         //Fetches data from the DB
         CKContainer.default().publicCloudDatabase.fetch(withQuery: query, inZoneWith: nil) { result in
-                switch result {
+            switch result {
+            case .failure(let error):
+                completed(.failure(error))
+                return
+            case .success((let matchResults, _)):
+                
+                var locations: [DDGLocation] = []
+                
+                for matchResult in matchResults {
+                    switch matchResult.1 {
+                    case .success(let record):
+                        let location = DDGLocation(record: record)
+                        locations.append(location)
                     case .failure(let error):
-                        completed(.failure(error))
+                        print("Error: \(error)")
                         return
-                case .success((let matchResults, _)):
-        
-                        var locations: [DDGLocation] = []
-            
-                        for matchResult in matchResults {
-                            switch matchResult.1 {
-                                case .success(let record):
-                                    let location = DDGLocation(record: record)
-                                    locations.append(location)
-                                case .failure(let error):
-                                print("Error: \(error)")
-                                    return
-                            }
-                        }
-                        completed(.success(locations))
+                    }
                 }
+                completed(.success(locations))
             }
-
+        }
+        
         /* Depricated:
          //Using the Query
          CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { records, error in
@@ -117,13 +117,15 @@ final class CloudKitManager{
                 return
             }
             
-            let profiles = records.map {$0.convertToDDGProfile()}
+            let profiles = records.map(DDGProfile.init)
             completed(.success(profiles))
         }
     }
     
     
     func getCheckedInProfilesDictionary(completed: @escaping(Result<[CKRecord.ID: [DDGProfile]], Error>)->Void){
+        
+        print("✅ Network call fired off")
         let predicate = NSPredicate(format: "isCheckedInNilCheck == 1")
         let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
         let operation = CKQueryOperation(query: query)
@@ -134,7 +136,7 @@ final class CloudKitManager{
         operation.recordFetchedBlock = { record in
             // Building the dictionary
             let profile = DDGProfile(record: record)
-            guard let locationReference = profile.isCheckedIn else { return }
+            guard let locationReference = record[DDGProfile.kIsCheckedIn]  as? CKRecord.Reference else { return }
             checkedInProfiles[locationReference.recordID, default: []].append(profile)
         }
         
@@ -142,13 +144,78 @@ final class CloudKitManager{
         //The cursor holds the current position of the Query sinc cloudkit returns a limited Number of results
         operation.queryResultBlock = { result in
             switch result{
-            case .success(_):
-                completed(.success(checkedInProfiles))
+            case .success(let cursor):
+                if let cursor = cursor{
+                    print("1️⃣ First Cursor is not nil - \(cursor)")
+                    print("👨‍👩‍👧‍👦 Current Dictionary - \(checkedInProfiles)")
+                    self.continueWithCheckedInProfilesDict(
+                        cursor: cursor,
+                        dictionary: checkedInProfiles) { result in
+                            switch result {
+                            case .success(let profiles):
+                                print("😊  Initial success - Dictionaray - \(profiles)")
+                                completed(.success(profiles))
+                            case .failure(let error):
+                                print("❌  Initial Error")
+                                completed(.failure(error))
+                            }
+                        }
+                } else {
+                    completed(.success(checkedInProfiles))
+                }
             case .failure(let error):
                 completed(.failure(error))
             }
         }
         CKContainer.default().publicCloudDatabase.add(operation)
+    }
+    
+    //Handles code pagination via cursor
+    func continueWithCheckedInProfilesDict(
+        cursor: CKQueryOperation.Cursor,
+        dictionary: [CKRecord.ID: [DDGProfile]],
+        completed: @escaping(Result<[CKRecord.ID: [DDGProfile]], Error>)->Void
+    ){
+        var checkedInProfiles = dictionary
+        let operation = CKQueryOperation(cursor: cursor)
+        
+        operation.recordFetchedBlock = { record in
+            // Building the dictionary
+            let profile = DDGProfile(record: record)
+            guard let locationReference = record[DDGProfile.kIsCheckedIn]  as? CKRecord.Reference else { return }
+            checkedInProfiles[locationReference.recordID, default: []].append(profile)
+        }
+        
+        //Runs when all records are done
+        //The cursor holds the current position of the Query sinc cloudkit returns a limited Number of results
+        operation.queryResultBlock = { result in
+            switch result{
+            case .success(let cursor):
+                if let cursor = cursor{
+                    print("⭕️ Recursive Cursor is not nil - \(cursor)")
+                    print("👨‍👩‍👧‍👦 Current Dictionary - \(checkedInProfiles)")
+                    self.continueWithCheckedInProfilesDict(
+                        cursor: cursor,
+                        dictionary: checkedInProfiles) { result in
+                            switch result {
+                            case .success(let profiles):
+                                print("😊 ⭕️ Recursive success - Dictionaray - \(profiles)")
+                                completed(.success(profiles))
+                            case .failure(let error):
+                                print("❌ ⭕️ Recursive Errror")
+                                completed(.failure(error))
+                            }
+                        }
+                } else {
+                    completed(.success(checkedInProfiles))
+                }
+                
+            case .failure(let error):
+                completed(.failure(error))
+            }
+        }
+        CKContainer.default().publicCloudDatabase.add(operation)
+        
     }
     
     
@@ -183,7 +250,7 @@ final class CloudKitManager{
         CKContainer.default().publicCloudDatabase.add(operation)
     }
     
-
+    
     func batchSave(records: [CKRecord], completed: @escaping(Result<[CKRecord], Error>)->Void){
         //Create a CKOpertation to save our User and Profile Records
         let operation = CKModifyRecordsOperation(recordsToSave: records)
@@ -211,7 +278,7 @@ final class CloudKitManager{
         }
     }
     
-
+    
     func fetchRecord(with id: CKRecord.ID, completed: @escaping(Result<CKRecord, Error>)->Void){
         CKContainer.default().publicCloudDatabase.fetch(withRecordID: id) { record, error in
             guard let record = record, error == nil else {

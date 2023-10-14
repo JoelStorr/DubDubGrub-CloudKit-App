@@ -25,17 +25,14 @@ struct DDGProfile: Identifiable{
     let avatar: CKAsset!
     let companyName: String
     let bio: String
-    var isCheckedIn: CKRecord.Reference?
     
     init(record: CKRecord){
         id = record.recordID
-        
         firstName = record[DDGProfile.kFirstName] as? String ?? "N/A"
         lastName = record[DDGProfile.kLastName] as? String ?? "N/A"
         avatar = record[DDGProfile.kAvatar] as? CKAsset
         companyName = record[DDGProfile.kCompanyName] as? String ?? "N/A"
         bio = record[DDGProfile.kBio] as? String ?? "N/A"
-        isCheckedIn = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference 
     }
     
     
