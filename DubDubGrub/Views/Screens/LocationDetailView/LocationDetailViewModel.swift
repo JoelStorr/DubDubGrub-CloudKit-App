@@ -36,8 +36,8 @@ extension LocationDetailView {
         }
         
         
-        func determinColumns(for sizeCategory: ContentSizeCategory) -> [GridItem]{
-            let numberOfColumns = sizeCategory >= .accessibilityMedium ? 1 : 3
+        func determinColumns(for dynamicTypeSize: DynamicTypeSize) -> [GridItem]{
+            let numberOfColumns = dynamicTypeSize >= .accessibility3 ? 1 : 3
             return Array(repeating: GridItem(.flexible()), count: numberOfColumns)
         }
         
@@ -159,9 +159,9 @@ extension LocationDetailView {
         }
         
         
-        func show(_ profile: DDGProfile, in sizeCategory: ContentSizeCategory) {
+        func show(_ profile: DDGProfile, in dynamicTypeSize: DynamicTypeSize) {
             selectedProfile = profile
-            if sizeCategory >= .accessibilityMedium {
+            if dynamicTypeSize >= .accessibility3 {
                 isShowingProfileSheet = true
             }else {
                 isShowingProfileModal = true

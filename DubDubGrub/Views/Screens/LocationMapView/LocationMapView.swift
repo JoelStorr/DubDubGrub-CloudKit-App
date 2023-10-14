@@ -14,7 +14,7 @@ struct LocationMapView: View {
     @StateObject private var viewModel = LocationMapViewModel()
     @State private var alertItem: AlertItem?
     
-    @Environment(\.sizeCategory) var sizeCategory
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
     
     var body: some View {
         ZStack(alignment: .top){
@@ -36,7 +36,7 @@ struct LocationMapView: View {
                     }
                 }
             }
-            .accentColor(.grubRed)
+            .tint(.grubRed)
             .ignoresSafeArea()
             
             
@@ -48,14 +48,13 @@ struct LocationMapView: View {
         }
         .sheet(isPresented: $viewModel.isShowingDetailView) {
             NavigationView{
-                viewModel.createLocationDetailView(for: locationManager.selectedLocation!, in: sizeCategory)
+                viewModel.createLocationDetailView(for: locationManager.selectedLocation!, in: dynamicTypeSize)
                     .toolbar{
                         Button("Dismiss"){
                             viewModel.isShowingDetailView = false
                         }
                     }
             }
-            .accentColor(.brandPrimary)
         }
         .alert(item: $viewModel.alertItem, content: { $0.alert })
         .onAppear(){

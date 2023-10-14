@@ -11,7 +11,7 @@ struct LocationDetailView: View {
     
    
     @ObservedObject var viewModel: LocationDetailViewModel
-    @Environment(\.sizeCategory) var sizeCategory
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
     
     
     var body: some View {
@@ -68,12 +68,12 @@ struct LocationDetailView: View {
                             
                     }else{
                         ScrollView{
-                            LazyVGrid(columns: viewModel.determinColumns(for: sizeCategory)) {
+                            LazyVGrid(columns: viewModel.determinColumns(for: dynamicTypeSize)) {
                                 ForEach(viewModel.checkedInProfiles){ profile in
                                     FirstNameAvtarView(profile: profile)
                                         .onTapGesture {
                                             withAnimation{
-                                                viewModel.show(profile, in: sizeCategory)
+                                                viewModel.show(profile, in: dynamicTypeSize)
                                             }
                                         }
                                 }
@@ -111,7 +111,6 @@ struct LocationDetailView: View {
                         }
                     }
             }
-            .accentColor(.brandPrimary)
         }
         .alert(item: $viewModel.alertItem, content: {$0.alert})
     }
@@ -154,14 +153,14 @@ fileprivate struct LocationActionButton: View {
 fileprivate struct FirstNameAvtarView: View {
     
     var profile: DDGProfile
-    @Environment(\.sizeCategory) var sizeCategory
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
     
     var body: some View{
         VStack{
             AvatarView(
                 image: profile.avatarImage,
-                size: sizeCategory >= .accessibilityMedium ? 100 : 64
+                size: dynamicTypeSize >= .accessibility3 ? 100 : 64
             )
             Text(profile.firstName)
                 .bold()
