@@ -71,7 +71,11 @@ struct LocationDetailView: View {
                             LazyVGrid(columns: viewModel.determinColumns(for: sizeCategory)) {
                                 ForEach(viewModel.checkedInProfiles){ profile in
                                     FirstNameAvtarView(profile: profile)
-                                        .onTapGesture { viewModel.show(profile, in: sizeCategory)}
+                                        .onTapGesture {
+                                            withAnimation{
+                                                viewModel.show(profile, in: sizeCategory)
+                                            }
+                                        }
                                 }
                             }
                         }

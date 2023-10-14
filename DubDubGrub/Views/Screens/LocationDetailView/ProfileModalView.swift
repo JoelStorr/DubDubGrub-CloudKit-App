@@ -61,7 +61,6 @@ struct ProfileModalView: View {
         //Does not work
         //.accessibilityAddTraits(.isModal)
         .transition(.opacity.combined(with: .slide))
-        .animation(.easeOut)
         .zIndex(2)
     }
 }
