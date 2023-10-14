@@ -19,10 +19,10 @@ struct AppTabView: View {
         }
         .onAppear{
             CloudKitManager.shared.getUserRecord()
-            viewModel.runStartUpChecks()
+            viewModel.checkIfHasSeenOnboarding()
         }
         
-        .sheet(isPresented: $viewModel.isShowingOnboardview, onDismiss: viewModel.checkIfLocationServicesIsEnabled) {
+        .sheet(isPresented: $viewModel.isShowingOnboardview) {
             OnboardView()
         }
         .tabViewDefaultBackground()
