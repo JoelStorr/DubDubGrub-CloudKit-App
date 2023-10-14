@@ -171,7 +171,7 @@ struct BioTextEditor: View {
     var body: some View {
         TextEditor(text: text)
             .frame(height: 100)
-            .overlay(RoundedRectangle(cornerRadius: 8).stroke( Color.secondary, lineWidth: 1))
+            .overlay{ RoundedRectangle(cornerRadius: 8).stroke( Color.secondary, lineWidth: 1) }
             .accessibilityHint(Text("This text field is for your bio and has a 100 character maximum."))
     }
 }
