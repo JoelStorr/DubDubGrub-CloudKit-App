@@ -15,30 +15,47 @@ final class CloudKitManager{
     
     var userRecord: CKRecord?
     var profileRecordID: CKRecord.ID?
+    let container = CKContainer.default()
     
     
-    func getUserRecord(){
-        //Get the User Record ID from Container
-        CKContainer.default().fetchUserRecordID { recordID, error in
-            guard let recordID = recordID, error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            //Get Userrecord from the Public Database
-            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
-                guard let userRecord = userRecord, error == nil else {
-                    print(error!.localizedDescription)
-                    return
-                }
-                self.userRecord = userRecord
-                
-                //If we have a user Profile set the reference id
-                if let profileReference = userRecord["userProfile"] as? CKRecord.Reference {
-                    self.profileRecordID = profileReference.recordID
-                }
-            }
+    func getUserRecord() async throws {
+        
+        //Either returns ID or throws an error
+        let recordID = try await container.userRecordID()
+        let record = try await container.publicCloudDatabase.record(for: recordID)
+        userRecord = record
+        
+        //If we have a user Profile set the reference id
+        if let profileReference = record["userProfile"] as? CKRecord.Reference {
+            profileRecordID = profileReference.recordID
         }
     }
+    
+    
+    
+// Old way of doing this
+//    func getUserRecord(){
+//        //Get the User Record ID from Container
+//        CKContainer.default().fetchUserRecordID { recordID, error in
+//            guard let recordID = recordID, error == nil else {
+//                print(error!.localizedDescription)
+//                return
+//            }
+//            //Get Userrecord from the Public Database
+//            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
+//                guard let userRecord = userRecord, error == nil else {
+//                    print(error!.localizedDescription)
+//                    return
+//                }
+//                self.userRecord = userRecord
+//                
+//                //If we have a user Profile set the reference id
+//                if let profileReference = userRecord["userProfile"] as? CKRecord.Reference {
+//                    self.profileRecordID = profileReference.recordID
+//                }
+//            }
+//        }
+//    }
     
     
     func getLocations(completed: @escaping (Result<[DDGLocation], Error>) -> Void) {
