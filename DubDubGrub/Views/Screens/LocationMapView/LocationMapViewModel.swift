@@ -13,7 +13,7 @@ import SwiftUI
 extension LocationMapView{
     
     //Every UI updat in this class gets routed into the main thread with @MainActor.
-    @MainActor final class LocationMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+    final class LocationMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         @Published var checkedInProfiles: [CKRecord.ID: Int] = [:]
         @Published var isShowingDetailView = false
@@ -58,6 +58,7 @@ extension LocationMapView{
             print("Did fial with error")
         }
         
+        @MainActor
         func getLocations(for locationManager: LocationManager){
             
             Task{
@@ -82,7 +83,7 @@ extension LocationMapView{
 //            }
         }
         
-        
+        @MainActor
         func getCheckedInCount(){
             Task{
                 do{
@@ -93,7 +94,7 @@ extension LocationMapView{
             }
         }
         
-        
+        @MainActor
         @ViewBuilder func createLocationDetailView(for location: DDGLocation, in dynamicTypeSize: DynamicTypeSize) -> some View {
             if dynamicTypeSize >= .accessibility3 {
                 LocationDetailView(viewModel: LocationDetailView.LocationDetailViewModel(location: location)).embedInScrollView()

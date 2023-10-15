@@ -167,7 +167,7 @@ final class CloudKitManager{
         }
         
     
-        guard let cursor = cursor else {
+        guard let cursor else {
             return checkedInProfiles
         }
         
@@ -198,7 +198,7 @@ final class CloudKitManager{
         }
      
         
-        guard let cursor = cursor else { return checkedInProfiles}
+        guard let cursor else { return checkedInProfiles}
         
         do{
             // Calls it self recursive untill there is no cursor any more
