@@ -138,12 +138,21 @@ fileprivate struct LocationActionButton: View {
     var body: some View {
         ZStack{
             Circle()
-                .foregroundColor(color)
+//                .fill(
+//                    Color.brandPrimary
+//                    .gradient
+//                        .shadow(.inner(color: .black.opacity(0.2), radius: 5, x: 2, y: 2))
+//                )
+                //.foregroundColor(color)
                 .frame(width: 60, height: 60)
             Image(systemName: imageName)
                 .resizable()
                 .scaledToFit()
-                .foregroundColor(.white)
+                .foregroundStyle(
+                    Color.white
+                        .shadow(.drop(color: .black.opacity(0.5), radius: 3))
+                )
+                //.foregroundColor(.white)
                 .frame(width: 22, height: 22)
         }
     }
