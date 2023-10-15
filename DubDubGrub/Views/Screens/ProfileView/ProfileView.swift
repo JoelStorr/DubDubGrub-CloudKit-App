@@ -70,8 +70,14 @@ struct ProfileView: View {
                             .disabled(viewModel.isLoading)
                         }
                     }
-                    BioTextEditor(text: $viewModel.bio)
+                    TextField("Enter your bio", text: $viewModel.bio, axis: .vertical)
+                        .textFieldStyle(.roundedBorder)
+                        .lineLimit(4...6)
                         .focused($focusedTextField, equals: .bio)
+                        .accessibilityHint(Text("This text field is for your bio and has a 100 character maximum."))
+                    
+//                    BioTextEditor(text: $viewModel.bio)
+//                        .focused($focusedTextField, equals: .bio)
                         
                 }
                 .padding(.horizontal, 20)
