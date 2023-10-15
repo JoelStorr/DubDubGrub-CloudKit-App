@@ -25,7 +25,7 @@ struct LocationListView: View {
                     }
                 }
             }
-            .onAppear{
+            .task{
                 viewModel.getCheckedInProfilesDictionary()
             }
             .navigationTitle("Grub Spots")

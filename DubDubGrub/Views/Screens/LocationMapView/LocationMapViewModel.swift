@@ -12,7 +12,8 @@ import SwiftUI
 
 extension LocationMapView{
     
-    final class LocationMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+    //Every UI updat in this class gets routed into the main thread with @MainActor.
+    @MainActor final class LocationMapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         @Published var checkedInProfiles: [CKRecord.ID: Int] = [:]
         @Published var isShowingDetailView = false
@@ -58,29 +59,36 @@ extension LocationMapView{
         }
         
         func getLocations(for locationManager: LocationManager){
-            CloudKitManager.shared.getLocations { [self] result in
-                DispatchQueue.main.async{
-                    switch result {
-                    case .success(let locations):
-                        locationManager.locations = locations
-                    case .failure(_):
-                        self.alertItem = AlertContext.unableToGetLocations
-                    }
+            
+            Task{
+                do{
+                    locationManager.locations = try await CloudKitManager.shared.getLocations()
+                } catch {
+                    self.alertItem = AlertContext.unableToGetLocations
                 }
             }
+            
+            
+//             Old way
+//            CloudKitManager.shared.getLocations { [self] result in
+//                DispatchQueue.main.async{
+//                    switch result {
+//                    case .success(let locations):
+//                        locationManager.locations = locations
+//                    case .failure(_):
+//                        self.alertItem = AlertContext.unableToGetLocations
+//                    }
+//                }
+//            }
         }
         
         
         func getCheckedInCount(){
-            CloudKitManager.shared.getCheckedInProfilesCount { result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let checkedInProfiles):
-                        self.checkedInProfiles = checkedInProfiles
-                    case .failure(_):
-                        self.alertItem = AlertContext.checkedInCount
-                        break
-                    }
+            Task{
+                do{
+                    checkedInProfiles = try await CloudKitManager.shared.getCheckedInProfilesCount()
+                }catch{
+                    alertItem = AlertContext.checkedInCount
                 }
             }
         }
