@@ -103,7 +103,7 @@ struct LocationDetailView: View {
         .navigationTitle(viewModel.location.name)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $viewModel.isShowingProfileSheet){
-            NavigationView{
+            NavigationStack{
                 ProfileSheetView(profile: viewModel.selectedProfile!)
                     .toolbar{
                         Button("Dismiss"){
@@ -119,7 +119,7 @@ struct LocationDetailView: View {
 
 struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             LocationDetailView(
                 viewModel: LocationDetailView.LocationDetailViewModel(
                     location: DDGLocation(record: MockData.chipotle)

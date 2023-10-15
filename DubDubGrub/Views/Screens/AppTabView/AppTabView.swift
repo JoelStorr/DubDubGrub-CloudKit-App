@@ -15,7 +15,7 @@ struct AppTabView: View {
         TabView{
             LocationMapView().tabItem { Label("Map", systemImage: "map") }
             LocationListView().tabItem { Label("Locations", systemImage: "building")}
-            NavigationView{ ProfileView()}.tabItem {Label("Profile", systemImage: "person")}
+            NavigationStack{ ProfileView()}.tabItem {Label("Profile", systemImage: "person")}
         }
         .task{
             try? await CloudKitManager.shared.getUserRecord()
